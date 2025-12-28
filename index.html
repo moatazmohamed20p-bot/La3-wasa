@@ -888,7 +888,7 @@
             <div class="form-group">
                 <label class="form-label">
                     <i class="fas fa-clock"></i>
-                    وقت الاستلام
+                    وقت التسليم
                 </label>
                 <input type="time" class="form-input" id="deliveryTime" required>
             </div>
@@ -941,45 +941,45 @@
 
         const menuItems = [
             // 🥪 ميكس حادق
-            { id: 1, name: "كريمة تركي", price: 20, category: "spicy-mix" },
-            { id: 2, name: "ميكس حادق", price: 30, category: "spicy-mix" },
-            { id: 3, name: "بطاطس", price: 20, category: "spicy-mix" },
-            { id: 4, name: "بطاطس موزاريلا", price: 30, category: "spicy-mix" },
-            { id: 5, name: "جبنة مقلية", price: 25, category: "spicy-mix" },
-            { id: 6, name: "فاهيتا فراخ", price: 30, category: "spicy-mix" },
-            { id: 7, name: "لحمة بصل", price: 35, category: "spicy-mix" },
-            { id: 8, name: "سجق خلطة", price: 30, category: "spicy-mix" },
-            { id: 9, name: "ميكسيكي", price: 25, category: "spicy-mix" },
+            { id: 1, name: "كريمة تركي", price: 15, category: "spicy-mix" },
+            { id: 2, name: "ميكس حادق", price: 20, category: "spicy-mix" },
+            { id: 3, name: "بطاطس", price: 15, category: "spicy-mix" },
+            { id: 4, name: "بطاطس موزاريلا", price: 15, category: "spicy-mix" },
+            { id: 5, name: "جبنة مقلية", price: 15, category: "spicy-mix" },
+            { id: 6, name: "فاهيتا فراخ", price: 20, category: "spicy-mix" },
+            { id: 7, name: "لحمة بصل", price: 25, category: "spicy-mix" },
+            { id: 8, name: "سجق خلطة", price: 25, category: "spicy-mix" },
+            { id: 9, name: "ميكس برجر", price: 25, category: "spicy-mix" },
             
             // 🥪 إضافات حادق
-            { id: 10, name: "كيري بسطرمه", price: 15, category: "spicy-additions" },
-            { id: 11, name: "كيري سوسيس", price: 20, category: "spicy-additions" },
+            { id: 10, name: "كبده بسطرمة", price: 20, category: "spicy-additions" },
+            { id: 11, name: "كبده سويسيس", price: 20, category: "spicy-additions" },
             { id: 12, name: "ميكس شيدر", price: 15, category: "spicy-additions" },
             { id: 13, name: "مشكل جبن", price: 15, category: "spicy-additions" },
-            { id: 14, name: "فاهيتا لانشون", price: 15, category: "spicy-additions" },
+            { id: 14, name: "فاهيتا لانشون", price: 20, category: "spicy-additions" },
             { id: 15, name: "لانشون تركي", price: 20, category: "spicy-additions" },
-            { id: 16, name: "تركي سوسيس", price: 25, category: "spicy-additions" },
+            { id: 16, name: "تركي سويسيس", price: 25, category: "spicy-additions" },
             { id: 17, name: "بسطرمة تركي", price: 25, category: "spicy-additions" },
             { id: 18, name: "تونة", price: 25, category: "spicy-additions" },
             
             // 🍪 ميكس الحلو
-            { id: 19, name: "كيندر", price: 25, category: "sweet-mix" },
-            { id: 20, name: "كيندر ميكس", price: 30, category: "sweet-mix" },
-            { id: 21, name: "بيستاشيو", price: 30, category: "sweet-mix" },
-            { id: 22, name: "بيستاشيو ميكس", price: 35, category: "sweet-mix" },
-            { id: 23, name: "مورو لوتس شوكولاتة", price: 25, category: "sweet-mix" },
-            { id: 24, name: "مورو أوريو شوكولاتة", price: 25, category: "sweet-mix" },
+            { id: 19, name: "كيندر", price: 15, category: "sweet-mix" },
+            { id: 20, name: "كيندر ميكس", price: 15, category: "sweet-mix" },
+            { id: 21, name: "بيستاشيو", price: 25, category: "sweet-mix" },
+            { id: 22, name: "بيستاشيو ميكس", price: 30, category: "sweet-mix" },
+            { id: 23, name: "مورو لوتس شوكولاتة", price: 35, category: "sweet-mix" },
+            { id: 24, name: "مورو أوريو شوكولاتة", price: 35, category: "sweet-mix" },
             
             // 🍯 إضافات الحلو
-            { id: 25, name: "كريمة (عسل أو مربى)", price: 15, category: "sweet-additions" },
-            { id: 26, name: "كريمة شوكولاتة", price: 15, category: "sweet-additions" },
-            { id: 27, name: "كريمة أوريو شوكولاتة", price: 25, category: "sweet-additions" },
-            { id: 28, name: "لوتس أو مورو", price: 20, category: "sweet-additions" },
-            { id: 29, name: "كريمة حلاوة شوكولاتة", price: 25, category: "sweet-additions" },
-            { id: 30, name: "لوتس أوريو شوكولاتة", price: 25, category: "sweet-additions" },
+            { id: 25, name: "كريمة (عسل أو مربى)", price: 30, category: "sweet-additions" },
+            { id: 26, name: "كريمة شوكولاتة", price: 30, category: "sweet-additions" },
+            { id: 27, name: "كريمة أوريو شوكولاتة", price: 35, category: "sweet-additions" },
+            { id: 28, name: "لوتس أو مورو", price: 35, category: "sweet-additions" },
+            { id: 29, name: "كريمة حلاوة شوكولاتة", price: 35, category: "sweet-additions" },
+            { id: 30, name: "لوتس أوريو شوكولاتة", price: 35, category: "sweet-additions" },
             
             // 🥜 فيج
-            { id: 31, name: "F16", price: 35, category: "F16" },
+            { id: 31, name: "فيج", price: 35, category: "vej" },
             
             // 🍫 لغوصة بلس
             { id: 32, name: "لغوصة بلس", price: 40, category: "lagousa-plus" },
@@ -1002,7 +1002,7 @@
             { id: 43, name: "NINJA", price: 125, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + صوص باربكيو + حلقات بصل + بطاطس مقلية" },
             { id: 44, name: "DOUBLE CHEESY", price: 130, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + موزاريلا ستيكس + موزاريلا سايحة + بطاطس مقلية" },
             { id: 45, name: "COW BOY", price: 125, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + صوص باربكيو + شرائح الهوت دوج + بطاطس مقلية" },
-            { id: 46, name: "MUSHROOM", price: 140, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + الصوص المميز + شرائح المشروم + بطاطس مقلية" },
+            { id: 46, name: "MUSHROOM", price: 145, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + الصوص المميز + شرائح المشروم + بطاطس مقلية" },
             { id: 47, name: "TASTY LOVERS", price: 140, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + صوص التيستي الخطر + بيف بيكون + بطاطس مقلية" },
             { id: 48, name: "LAVA", price: 120, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + صوص البافلو + شرائح الهالبينو + بطاطس مقلية" },
             
@@ -1012,13 +1012,13 @@
             { id: 51, name: "Grill Chicken", price: 90, category: "sandwiches" },
             { id: 52, name: "Super Supreme", price: 90, category: "sandwiches" },
             { id: 53, name: "Pastrmi", price: 70, category: "sandwiches" },
-            { id: 54, name: "Met Shawarma", price: 90, category: "sandwiches" },
+            { id: 54, name: "Meat Shawarma", price: 90, category: "sandwiches" },
             
             // 🧀 MAC & CHEESE
             { id: 55, name: "Mexican Mac", price: 90, category: "mac-cheese" },
             { id: 56, name: "Shrimp Mac", price: 90, category: "mac-cheese" },
             { id: 57, name: "Strips Mac", price: 105, category: "mac-cheese" },
-            { id: 58, name: "Smash Mac", price: 110, category: "mac-cheese" },
+            { id: 58, name: "Smash Mac", price: 115, category: "mac-cheese" },
             
             // 🌯 FAHITA
             { id: 59, name: "Mexican Fahita", price: 80, category: "fahita" },
@@ -1027,7 +1027,7 @@
             
             // 🍟 LOADED FRIES
             { id: 62, name: "Mexican Fries", price: 75, category: "loaded-fries" },
-            { id: 63, name: "Smash Fries", price: 95, category: "loaded-fries" },
+            { id: 63, name: "Smash Fries", price: 90, category: "loaded-fries" },
             { id: 64, name: "Strips Fries", price: 90, category: "loaded-fries" },
             
             // 🔥 TNT
@@ -1038,7 +1038,7 @@
             
             // 📦 BOX'S
             { id: 69, name: "بوكس التوفير", price: 180, category: "boxes", description: "كلاسيك سماش + كلاسيك تشكن + باكيت فرايز + بيج كولا" },
-            { id: 70, name: "بوكس السينجل", price: 130, category: "boxes", description: "كلاسيك سماش + تشيزبرجر + فرايز + بيج كولا" },
+            { id: 70, name: "بوكس السينجل", price: 140, category: "boxes", description: "كلاسيك سماش + تشيزبرجر + فرايز + بيج كولا" },
             { id: 71, name: "بوكس الشلة", price: 440, category: "boxes", description: "كلاسيك سماش + مشروم سماش + كلاسيك تشكن + رانجو تشكن + ميكس فرايز + تشيزبرجر + 4 بيج كولا" },
             
             // 🍽️ MEALS
@@ -1046,19 +1046,19 @@
             { id: 73, name: "Grilled Meal", price: 140, category: "meals" },
             
             // 🆕 NEW ITEMS
-            { id: 74, name: "ميني لغوصة 1", price: 60, category: "new-items", description: "3 ميني سماش + فرايز" },
-            { id: 75, name: "ميني لغوصة 2", price: 115, category: "new-items", description: "3 ميني سماش + تشكن + فرايز" },
-            { id: 76, name: "مينيي لغوصة 3", price: 205, category: "new-items", description: "3 ميني سماش + تشكن + فرايز" },
+            { id: 74, name: "ميني لقمة 1", price: 60, category: "new-items", description: "3 ميني سماش + فرايز" },
+            { id: 75, name: "ميني لقمة 2", price: 115, category: "new-items", description: "3 ميني سماش + تشكن + فرايز" },
+            { id: 76, name: "ميني لقمة 3", price: 205, category: "new-items", description: "3 ميني سماش + تشكن + فرايز" },
             
             // 🥗 APPETIZERS
             { id: 77, name: "Fries", price: 35, category: "appetizers" },
             { id: 78, name: "Cheesy Fries", price: 45, category: "appetizers" },
             { id: 79, name: "Chicken Balls", price: 85, category: "appetizers" },
             { id: 80, name: "Mozzarella Sticks", price: 60, category: "appetizers" },
-            { id: 81, name: "Onion Rings", price: 55, category: "appetizers" },
+            { id: 81, name: "Onion Rings", price: 50, category: "appetizers" },
             { id: 82, name: "Strips", price: 105, category: "appetizers" },
             { id: 83, name: "Chicken Caesar", price: 60, category: "appetizers" },
-            { id: 84, name: "Fatusha Salad", price: 55, category: "appetizers" }
+            { id: 84, name: "Fatusha Salad", price: 50, category: "appetizers" }
         ];
 
         // إعدادات Cloudinary
@@ -1281,9 +1281,7 @@
             }
             
             totalAmountDiv.textContent = `${totalAmount} جنيه`;
-            requiredAmountDiv.textContent = `المطلوب دفعه 
-             ..الباقي عند الاستلام..  (50%)
-            ${requiredAmount} جنيه`;
+            requiredAmountDiv.textContent = `المطلوب دفعه (50%): ${requiredAmount} جنيه`;
             submitBtn.disabled = selectedItems.length === 0;
         }
 
@@ -1362,7 +1360,7 @@
         // فتح واتساب بطريقة تعمل على جميع الأجهزة
         function openWhatsApp(message) {
             // رقم واتساب الجديد
-            const whatsappPhone = "201144218416"; // بدون علامة +
+            const whatsappPhone = "201211926740"; // بدون علامة +
             const encodedMessage = encodeURIComponent(message);
             
             // رابط يعمل على جميع الأجهزة
@@ -1444,7 +1442,7 @@
                     ${itemsText}
                     
                     💰 *المبلغ الإجمالي:* ${totalAmount} ج
-                    💵 *المطلوب دفعه (50%)والباقي عند الاستلام:* ${requiredAmount} ج
+                    💵 *المطلوب دفعه (50%):* ${requiredAmount} ج
                     💳 *طريقة الدفع:* ${paymentMethod}
                     📱 *رقم الدفع:* ${paymentNumber}
                     
@@ -1453,7 +1451,7 @@
                     📅 *الوقت:* ${new Date().toLocaleString()}
                 `.trim();
                 
-                // 5. حفظ البيانات في Firebase
+                // 5. تحضير بيانات الطلب
                 currentOrderData = {
                     orderNumber: currentOrderNumber,
                     customerName: name,
@@ -1473,23 +1471,53 @@
                     timestamp: new Date().toISOString()
                 };
                 
-                const response = await fetch(FIREBASE_URL, {
-                 method: "POST"
-                    body: JSON.stringify(currentOrderData)
-                });
+                // 6. محاولة الحفظ في Firebase (مع معالجة الأخطاء)
+                let firebaseSaved = false;
+                try {
+                    const response = await fetch(FIREBASE_URL, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(currentOrderData)
+                    });
+                    
+                    firebaseSaved = response.ok;
+                } catch (firebaseError) {
+                    console.log('Firebase error:', firebaseError);
+                    firebaseSaved = false;
+                }
                 
-                if (!response.ok) throw new Error('فشل حفظ الطلب');
+                // 7. الحفظ المحلي دائماً (كنسخة احتياطية)
+                try {
+                    // حفظ في localStorage
+                    localStorage.setItem(`order_${currentOrderNumber}`, JSON.stringify(currentOrderData));
+                    
+                    // حفظ في قائمة الطلبات
+                    const allOrders = JSON.parse(localStorage.getItem('all_orders') || '[]');
+                    allOrders.push({
+                        ...currentOrderData,
+                        id: Date.now()
+                    });
+                    localStorage.setItem('all_orders', JSON.stringify(allOrders));
+                    
+                } catch (localError) {
+                    console.log('Local storage error:', localError);
+                }
                 
-                // 6. إخفاء التحميل وإظهار نجاح الحفظ
+                // 8. إخفاء التحميل وإظهار نجاح الحفظ
                 document.getElementById('loadingOverlay').style.display = 'none';
-                showToast(`تم حفظ الطلب ${currentOrderNumber} في قاعدة البيانات`);
                 
-                // 7. فتح واتساب تلقائياً بعد 1 ثانية
+                if (firebaseSaved) {
+                    showToast(`تم حفظ الطلب ${currentOrderNumber} في قاعدة البيانات`);
+                } else {
+                    showToast(`تم حفظ الطلب ${currentOrderNumber} محلياً`);
+                }
+                
+                // 9. فتح واتساب تلقائياً بعد 1 ثانية
                 setTimeout(() => {
                     openWhatsApp(message);
                 }, 1000);
                 
-                // 8. عرض رسالة نجاح للعميل
+                // 10. عرض رسالة نجاح للعميل
                 setTimeout(() => {
                     alert(`
                         ✅ تم إرسال طلبك بنجاح!
@@ -1498,14 +1526,14 @@
                         💰 المبلغ المطلوب: ${requiredAmount} جنيه
                         📞 سيتم التواصل معك على: ${phone}
                         --------------------------------------
-                        📊 تم حفظ الطلب في قاعدة البيانات
+                        ${firebaseSaved ? '📊 تم حفظ الطلب في قاعدة البيانات' : '📱 تم حفظ الطلب محلياً'}
                         📱 تم فتح واتساب لإرسال التفاصيل
                         
                         إذا لم يفتح واتساب تلقائياً، يمكنك نسخ رقم التليفون وإرسال الرسالة يدوياً:
                         📱 +201211926740
                     `);
                     
-                    // 9. إعادة تعيين النموذج
+                    // 11. إعادة تعيين النموذج
                     resetForm();
                     
                 }, 1500);
