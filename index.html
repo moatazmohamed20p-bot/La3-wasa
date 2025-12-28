@@ -1,1594 +1,1598 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مطعم لغوصة - طلب أونلاين</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #4B1E14;
-            --secondary: #F4E21B;
-            --light: #FFFDF5;
-            --dark: #2C1810;
-            --gray: #6C757D;
-            --success: #28A745;
-            --warning: #FFC107;
-            --danger: #DC3545;
-            --whatsapp: #25D366;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-            padding: 20px;
-            overflow-x: hidden;
-        }
-
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, var(--primary) 0%, #6B2A1F 100%);
-            color: white;
-            padding: 15px 0;
-            box-shadow: 0 4px 20px rgba(75, 30, 20, 0.3);
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            border: 3px solid var(--secondary);
-            object-fit: cover;
-            box-shadow: 0 0 10px rgba(244, 226, 27, 0.3);
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--primary);
-            overflow: hidden;
-        }
-
-        .logo-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .logo-text h1 {
-            font-size: 28px;
-            margin-bottom: 5px;
-            color: var(--secondary);
-            font-weight: 800;
-        }
-
-        .logo-text p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        /* Main Container */
-        .main-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Menu Section */
-        .menu-section {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border: 1px solid #EEE;
-        }
-
-        .section-title {
-            color: var(--primary);
-            border-right: 5px solid var(--secondary);
-            padding-right: 15px;
-            margin-bottom: 25px;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-title i {
-            color: var(--secondary);
-        }
-
-        .menu-items-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .menu-item-card {
-            border: 2px solid #F0F0F0;
-            border-radius: 12px;
-            padding: 15px;
-            transition: all 0.3s;
-            background: white;
-        }
-
-        .menu-item-card:hover {
-            border-color: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(244, 226, 27, 0.1);
-        }
-
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }
-
-        .item-name {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .item-price {
-            background: var(--primary);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .item-description {
-            color: var(--gray);
-            font-size: 13px;
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-
-        .select-item-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            width: 100%;
-            transition: all 0.3s;
-            font-size: 14px;
-        }
-
-        .select-item-btn:hover {
-            background: var(--secondary);
-            color: var(--primary);
-        }
-
-        /* Category Tabs */
-        .category-tabs {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding: 10px 0;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
-        .category-btn {
-            padding: 10px 15px;
-            background: #F5F5F5;
-            border: 2px solid #E0E0E0;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--dark);
-            transition: all 0.3s;
-            white-space: nowrap;
-            font-size: 14px;
-        }
-
-        .category-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        /* Order Form */
-        .order-box {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border: 2px solid var(--secondary);
-            position: sticky;
-            top: 20px;
-        }
-
-        .form-title {
-            color: var(--primary);
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        /* Input Styles */
-        .form-input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #E0E0E0;
-            border-radius: 8px;
-            font-size: 16px;
-            margin-bottom: 15px;
-            transition: all 0.3s;
-            background: white;
-        }
-
-        .form-input:focus {
-            border-color: var(--secondary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(244, 226, 27, 0.2);
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-        }
-
-        /* Selected Items */
-        .selected-items-container {
-            background: #FFF9E6;
-            border: 2px dashed var(--secondary);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            max-height: 250px;
-            overflow-y: auto;
-        }
-
-        .selected-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid #FFE999;
-            font-size: 14px;
-        }
-
-        .selected-item:last-child {
-            border-bottom: none;
-        }
-
-        .item-quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .quantity-btn {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            border: none;
-            background: var(--primary);
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-        .remove-item-btn {
-            color: var(--danger);
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            margin-right: 5px;
-        }
-
-        /* Total Section */
-        .total-section {
-            text-align: center;
-            margin: 20px 0;
-            padding: 15px;
-            background: linear-gradient(135deg, #FFF9E6, #FFE999);
-            border-radius: 10px;
-            border: 2px solid var(--secondary);
-        }
-
-        .total-label {
-            font-size: 16px;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .total-amount {
-            font-size: 28px;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .required-amount {
-            font-size: 18px;
-            color: #DC3545;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        /* Order Type Selection */
-        .order-type-section {
-            background: #F8F9FA;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 15px 0;
-            border: 2px solid #E0E0E0;
-        }
-
-        .order-type-title {
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .order-type-options {
-            display: flex;
-            gap: 10px;
-        }
-
-        .order-type-btn {
-            flex: 1;
-            padding: 12px;
-            border: 2px solid #E0E0E0;
-            border-radius: 8px;
-            background: white;
-            cursor: pointer;
-            font-weight: 600;
-            text-align: center;
-            transition: all 0.3s;
-            font-size: 14px;
-        }
-
-        .order-type-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        /* Payment Instructions */
-        .payment-instructions {
-            background: #F0F8FF;
-            border: 2px solid #B8D4FF;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 15px 0;
-        }
-
-        .instructions-title {
-            color: var(--primary);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 16px;
-        }
-
-        .vodafone-number {
-            background: white;
-            padding: 12px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
-            color: var(--primary);
-            border: 2px solid #4CAF50;
-            margin: 10px 0;
-        }
-
-        .instapay-number {
-            background: white;
-            padding: 12px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--primary);
-            border: 2px solid #E1306C;
-            margin: 8px 0;
-        }
-
-        /* File Upload */
-        .file-upload-container {
-            margin: 15px 0;
-        }
-
-        .file-upload-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-        }
-
-        .custom-file-upload {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px;
-            background: white;
-            border: 2px dashed var(--secondary);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .custom-file-upload:hover {
-            background: #FFF9E6;
-            border-color: var(--primary);
-        }
-
-        .upload-icon {
-            font-size: 20px;
-            color: var(--primary);
-        }
-
-        .upload-text h4 {
-            color: var(--primary);
-            margin-bottom: 3px;
-            font-size: 14px;
-        }
-
-        .upload-text p {
-            color: var(--gray);
-            font-size: 12px;
-        }
-
-        .file-name {
-            font-size: 12px;
-            color: var(--success);
-            font-weight: bold;
-            margin-top: 8px;
-            display: none;
-        }
-
-        /* Submit Button */
-        .submit-btn {
-            background: linear-gradient(135deg, var(--primary) 0%, #6B2A1F 100%);
-            color: white;
-            border: none;
-            padding: 18px;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 12px;
-            width: 100%;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            margin-top: 20px;
-            box-shadow: 0 8px 25px rgba(75, 30, 20, 0.2);
-        }
-
-        .submit-btn:hover:not(:disabled) {
-            background: linear-gradient(135deg, #6B2A1F 0%, var(--primary) 100%);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(75, 30, 20, 0.3);
-        }
-
-        .submit-btn:active:not(:disabled) {
-            transform: translateY(-2px);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        /* Payment Options */
-        .payment-options {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .payment-option-btn {
-            flex: 1;
-            padding: 10px;
-            border: 2px solid #E0E0E0;
-            border-radius: 8px;
-            background: white;
-            cursor: pointer;
-            font-weight: 600;
-            text-align: center;
-            transition: all 0.3s;
-            font-size: 13px;
-        }
-
-        .payment-option-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .main-container {
-                grid-template-columns: 1fr;
-            }
-            .order-box {
-                position: static;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            .menu-items-grid {
-                grid-template-columns: 1fr;
-            }
-            .order-type-options, .payment-options {
-                flex-direction: column;
-            }
-            .submit-btn {
-                padding: 15px;
-                font-size: 18px;
-            }
-        }
-
-        /* Logo Animation */
-        .logo-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary) 0%, #6B2A1F 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-
-        .rotating-logo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 5px solid var(--secondary);
-            box-shadow: 0 0 30px rgba(244, 226, 27, 0.5);
-            background: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-            animation: scaleAndRotate 2.5s ease-in-out;
-        }
-
-        .rotating-logo img {
-            width: 90%;
-            height: 90%;
-            object-fit: contain;
-        }
-
-        .rotating-logo::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border: 5px solid transparent;
-            border-top-color: var(--secondary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes scaleAndRotate {
-            0% {
-                transform: scale(0.3) rotate(0deg);
-                opacity: 0;
-            }
-            30% {
-                transform: scale(1.2) rotate(180deg);
-                opacity: 1;
-            }
-            60% {
-                transform: scale(1) rotate(360deg);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1) rotate(360deg);
-                opacity: 1;
-            }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: none;
-            z-index: 3000;
-            animation: slideDown 0.3s ease;
-            border: 2px solid var(--secondary);
-        }
-
-        @keyframes slideDown {
-            from { top: -100px; opacity: 0; }
-            to { top: 20px; opacity: 1; }
-        }
-
-        /* Loading Overlay */
-        .loading-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 4000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .loading-content {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            border: 3px solid var(--secondary);
-        }
-
-        .loading-spinner {
-            font-size: 35px;
-            color: var(--primary);
-            margin-bottom: 15px;
-            animation: spin 1s linear infinite;
-        }
-    </style>
-</head>
-<body>
-    <!-- Logo Animation -->
-    <div class="logo-animation" id="logoAnimation">
-        <div class="rotating-logo">
-            <img src="logo.jpg" alt="مطعم لغوصة" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size: 32px; font-weight: bold; color: var(--primary);\'>لغوصة</span>';">
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="header-container">
-            <div class="logo-section">
-                <div class="logo-img">
-                    <img src="logo.jpg" alt="مطعم لغوصة" onerror="this.style.display='none'; this.parentElement.innerHTML='لغوصة'; this.parentElement.style.fontSize='22px';">
-                </div>
-                <div class="logo-text">
-                    <h1>مطعم لغوصة</h1>
-                    <p>برجر - ساندويتشات - وجبات سريعة</p>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- Menu Section -->
-        <div class="menu-section">
-            <h2 class="section-title">
-                <i class="fas fa-utensils"></i>
-                قائمة الطعام
-            </h2>
-            
-            <!-- Category Tabs -->
-            <div class="category-tabs" id="categoryTabs">
-                <!-- سيتم ملؤه بالجافاسكريبت -->
-            </div>
-
-            <!-- Menu Items -->
-            <div class="menu-items-grid" id="menuItems">
-                <!-- سيتم ملؤه بالجافاسكريبت -->
-            </div>
-        </div>
-
-        <!-- Order Form -->
-        <div class="order-box">
-            <h2 class="form-title">
-                <i class="fas fa-shopping-cart"></i>
-                طلبك
-            </h2>
-
-            <!-- Selected Items -->
-            <div class="selected-items-container" id="selectedItems">
-                <p style="text-align: center; color: var(--gray); padding: 20px;">
-                    لم يتم اختيار أي أصناف بعد
-                </p>
-            </div>
-
-            <!-- Total Amount -->
-            <div class="total-section">
-                <div class="total-label">المبلغ الإجمالي</div>
-                <div class="total-amount" id="totalAmount">0 جنيه</div>
-                <div class="required-amount" id="requiredAmount">
-                    المطلوب دفعه (50%): 0 جنيه
-                </div>
-            </div>
-
-            <!-- Customer Info -->
-            <div class="form-group">
-                <label class="form-label">
-                    <i class="fas fa-user"></i>
-                    اسم العميل
-                </label>
-                <input type="text" class="form-input" id="name" placeholder="اسم العميل" required>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">
-                    <i class="fas fa-phone"></i>
-                    رقم الهاتف
-                </label>
-                <input type="tel" class="form-input" id="phone" placeholder="رقم الهاتف" required>
-            </div>
-
-            <!-- Order Type -->
-            <div class="order-type-section">
-                <h3 class="order-type-title">
-                    <i class="fas fa-shipping-fast"></i>
-                    نوع الطلب
-                </h3>
-                <div class="order-type-options">
-                    <button type="button" class="order-type-btn active" id="takeawayBtn" onclick="selectOrderType('takeaway')">
-                        <i class="fas fa-box"></i>
-                        Take Away
-                    </button>
-                    <button type="button" class="order-type-btn" id="deliveryBtn" onclick="selectOrderType('delivery')">
-                        <i class="fas fa-truck"></i>
-                        Delivery
-                    </button>
-                    <button type="button" class="order-type-btn" id="hallBtn" onclick="selectOrderType('hall')">
-                        <i class="fas fa-store"></i>
-                        صالة
-                    </button>
-                </div>
-            </div>
-
-            <!-- Address Field -->
-            <div class="form-group" id="addressField" style="display: none;">
-                <label class="form-label">
-                    <i class="fas fa-map-marker-alt"></i>
-                    العنوان
-                </label>
-                <textarea class="form-input" id="address" rows="2" placeholder="العنوان"></textarea>
-            </div>
-
-            <!-- Payment Instructions -->
-            <div class="payment-instructions">
-                <h3 class="instructions-title">
-                    <i class="fas fa-money-check-alt"></i>
-                    تعليمات الدفع
-                </h3>
-                <p style="margin-bottom: 10px; color: #666; font-size: 14px;">
-                    <strong>يرجى تحويل 50% من المبلغ الإجمالي على أحد الأرقام:</strong>
-                </p>
-                
-                <div class="payment-options">
-                    <button type="button" class="payment-option-btn active" id="vodafoneBtn" onclick="selectPaymentMethod('etisalat')">
-                        اتصالات كاش
-                    </button>
-                    <button type="button" class="payment-option-btn" id="instapayBtn" onclick="selectPaymentMethod('instapay')">
-                        انستا باي
-                    </button>
-                </div>
-
-                <div id="etisalatPayment" class="payment-method">
-                    <p style="color: #666; margin-bottom: 8px; font-size: 13px;">اتصالات كاش:</p>
-                    <div class="vodafone-number">01117268638</div>
-                </div>
-
-                <div id="instapayPayment" class="payment-method" style="display: none;">
-                    <p style="color: #666; margin-bottom: 8px; font-size: 13px;">انستا باي:</p>
-                    <div class="instapay-number">01211926740</div>
-                </div>
-
-                <p style="color: #666; font-size: 13px; margin-top: 10px;">
-                    ثم قم برفع صورة التحويل
-                </p>
-            </div>
-
-            <!-- Payment Screenshot -->
-            <div class="file-upload-container">
-                <label class="file-upload-label">
-                    <i class="fas fa-camera"></i>
-                    صورة التحويل
-                </label>
-                <div class="custom-file-upload" onclick="document.getElementById('img').click()">
-                    <div class="upload-icon">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                    </div>
-                    <div class="upload-text">
-                        <h4>انقر لرفع صورة التحويل</h4>
-                        <p>JPEG, PNG - الحد الأقصى 5MB</p>
-                    </div>
-                    <div>
-                        <i class="fas fa-file-upload" style="color: var(--primary); font-size: 18px;"></i>
-                    </div>
-                </div>
-                <input type="file" id="img" accept="image/*" style="display: none;" onchange="handleFileUpload(this)">
-                
-                <div class="file-name" id="fileName"></div>
-            </div>
-
-            <!-- Delivery Time -->
-            <div class="form-group">
-                <label class="form-label">
-                    <i class="fas fa-clock"></i>
-                    وقت التسليم
-                </label>
-                <input type="time" class="form-input" id="deliveryTime" required>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="button" class="submit-btn" id="submitBtn" onclick="saveOrderAndSendWhatsApp()">
-                <i class="fas fa-paper-plane"></i>
-                تأكيد وإرسال الطلب
-            </button>
-        </div>
-    </div>
-
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-content">
-            <div class="loading-spinner">
-                <i class="fas fa-spinner"></i>
-            </div>
-            <h3 style="color: var(--primary); margin-bottom: 10px;">جاري إرسال الطلب</h3>
-            <p style="color: var(--gray);">يرجى الانتظار...</p>
-        </div>
-    </div>
-
-    <!-- Toast Notification -->
-    <div class="toast" id="toast"></div>
-
-    <script>
-        // بيانات المنيو المحدثة بناءً على الطلب
-        const menuCategories = [
-            { id: 'all', name: 'الكل', icon: 'fas fa-utensils' },
-            { id: 'spicy-mix', name: '🥪 ميكس حادق', icon: 'fas fa-pepper-hot' },
-            { id: 'spicy-additions', name: '🥪 إضافات حادق', icon: 'fas fa-plus-circle' },
-            { id: 'sweet-mix', name: '🍪 ميكس الحلو', icon: 'fas fa-candy-cane' },
-            { id: 'sweet-additions', name: '🍯 إضافات الحلو', icon: 'fas fa-plus-circle' },
-            { id: 'vej', name: '🥜 فيج', icon: 'fas fa-seedling' },
-            { id: 'lagousa-plus', name: '🍫 لغوصة بلس', icon: 'fas fa-star' },
-            { id: 'additions', name: '➕ إضافات', icon: 'fas fa-plus' },
-            { id: 'chicken', name: '🍗 CHICKEN', icon: 'fas fa-drumstick-bite' },
-            { id: 'burgers', name: '🍔 BURGERS', icon: 'fas fa-hamburger' },
-            { id: 'sandwiches', name: '🌭 SANDWICH', icon: 'fas fa-bread-slice' },
-            { id: 'mac-cheese', name: '🧀 MAC & CHEESE', icon: 'fas fa-cheese' },
-            { id: 'fahita', name: '🌯 FAHITA', icon: 'fas fa-burrito' },
-            { id: 'loaded-fries', name: '🍟 LOADED FRIES', icon: 'fas fa-french-fries' },
-            { id: 'tnt', name: '🔥 TNT', icon: 'fas fa-fire' },
-            { id: 'boxes', name: '📦 BOX\'S', icon: 'fas fa-box-open' },
-            { id: 'meals', name: '🍽️ MEALS', icon: 'fas fa-utensil-spoon' },
-            { id: 'new-items', name: '🆕 NEW ITEMS', icon: 'fas fa-fire' },
-            { id: 'appetizers', name: '🥗 APPETIZERS', icon: 'fas fa-salad' }
-        ];
-
-        const menuItems = [
-            // 🥪 ميكس حادق
-            { id: 1, name: "كريمة تركي", price: 15, category: "spicy-mix" },
-            { id: 2, name: "ميكس حادق", price: 20, category: "spicy-mix" },
-            { id: 3, name: "بطاطس", price: 15, category: "spicy-mix" },
-            { id: 4, name: "بطاطس موزاريلا", price: 15, category: "spicy-mix" },
-            { id: 5, name: "جبنة مقلية", price: 15, category: "spicy-mix" },
-            { id: 6, name: "فاهيتا فراخ", price: 20, category: "spicy-mix" },
-            { id: 7, name: "لحمة بصل", price: 25, category: "spicy-mix" },
-            { id: 8, name: "سجق خلطة", price: 25, category: "spicy-mix" },
-            { id: 9, name: "ميكس برجر", price: 25, category: "spicy-mix" },
-            
-            // 🥪 إضافات حادق
-            { id: 10, name: "كبده بسطرمة", price: 20, category: "spicy-additions" },
-            { id: 11, name: "كبده سويسيس", price: 20, category: "spicy-additions" },
-            { id: 12, name: "ميكس شيدر", price: 15, category: "spicy-additions" },
-            { id: 13, name: "مشكل جبن", price: 15, category: "spicy-additions" },
-            { id: 14, name: "فاهيتا لانشون", price: 20, category: "spicy-additions" },
-            { id: 15, name: "لانشون تركي", price: 20, category: "spicy-additions" },
-            { id: 16, name: "تركي سويسيس", price: 25, category: "spicy-additions" },
-            { id: 17, name: "بسطرمة تركي", price: 25, category: "spicy-additions" },
-            { id: 18, name: "تونة", price: 25, category: "spicy-additions" },
-            
-            // 🍪 ميكس الحلو
-            { id: 19, name: "كيندر", price: 15, category: "sweet-mix" },
-            { id: 20, name: "كيندر ميكس", price: 15, category: "sweet-mix" },
-            { id: 21, name: "بيستاشيو", price: 25, category: "sweet-mix" },
-            { id: 22, name: "بيستاشيو ميكس", price: 30, category: "sweet-mix" },
-            { id: 23, name: "مورو لوتس شوكولاتة", price: 35, category: "sweet-mix" },
-            { id: 24, name: "مورو أوريو شوكولاتة", price: 35, category: "sweet-mix" },
-            
-            // 🍯 إضافات الحلو
-            { id: 25, name: "كريمة (عسل أو مربى)", price: 30, category: "sweet-additions" },
-            { id: 26, name: "كريمة شوكولاتة", price: 30, category: "sweet-additions" },
-            { id: 27, name: "كريمة أوريو شوكولاتة", price: 35, category: "sweet-additions" },
-            { id: 28, name: "لوتس أو مورو", price: 35, category: "sweet-additions" },
-            { id: 29, name: "كريمة حلاوة شوكولاتة", price: 35, category: "sweet-additions" },
-            { id: 30, name: "لوتس أوريو شوكولاتة", price: 35, category: "sweet-additions" },
-            
-            // 🥜 فيج
-            { id: 31, name: "فيج", price: 35, category: "vej" },
-            
-            // 🍫 لغوصة بلس
-            { id: 32, name: "لغوصة بلس", price: 40, category: "lagousa-plus" },
-            { id: 33, name: "لغوصة دابل بلس", price: 45, category: "lagousa-plus" },
-            
-            // ➕ إضافات
-            { id: 34, name: "إضافة سوداني", price: 5, category: "additions" },
-            
-            // 🍗 CHICKEN
-            { id: 35, name: "GLACCIO", price: 100, category: "chicken", description: "صدور الدجاج المقلية مع صوص الشيدر الكريمي والمايونيز والبطاطس المقلية" },
-            { id: 36, name: "BUFFALO CHICKEN", price: 110, category: "chicken", description: "صدور الدجاج المقلية مع صوص المايونيز وصوص البافلو وحلقات الهالبينو والبطاطس المقلية" },
-            { id: 37, name: "CHEESY CHICKEN", price: 125, category: "chicken", description: "صدور الدجاج المقلية مع صوص الشيدر الكريمي والمايونيز والموزاريلا ستيكس والموزاريلا السايحة والبطاطس المقلية" },
-            { id: 38, name: "RINGO CHICKEN", price: 120, category: "chicken", description: "صدور الدجاج المقلية مع صوص الشيدر الكريمي والمايونيز وصوص الباربكيو وحلقات البصل والبطاطس المقلية" },
-            { id: 39, name: "RANCHO CHICKEN", price: 130, category: "chicken", description: "صدور الدجاج المقلية مع صوص الشيدر الكريمي وصوص الرانش وشرائح التركي المدخن والبطاطس المقلية" },
-            { id: 40, name: "TASTY CHICKEN", price: 145, category: "chicken", description: "صدور الدجاج المقلية مع صوص الشيدر الكريمي وصوص التيستي وشرائح البسطرمة والبطاطس المقلية" },
-            
-            // 🍔 BURGERS - لغوصة
-            { id: 41, name: "GLACCIO", price: 110, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + بطاطس مقلية" },
-            { id: 42, name: "CARAMELIZED", price: 115, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + البصل المكرمل + بطاطس مقلية" },
-            { id: 43, name: "NINJA", price: 125, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + صوص باربكيو + حلقات بصل + بطاطس مقلية" },
-            { id: 44, name: "DOUBLE CHEESY", price: 130, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + موزاريلا ستيكس + موزاريلا سايحة + بطاطس مقلية" },
-            { id: 45, name: "COW BOY", price: 125, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + صوص باربكيو + شرائح الهوت دوج + بطاطس مقلية" },
-            { id: 46, name: "MUSHROOM", price: 145, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + الصوص المميز + شرائح المشروم + بطاطس مقلية" },
-            { id: 47, name: "TASTY LOVERS", price: 140, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + صوص التيستي الخطر + بيف بيكون + بطاطس مقلية" },
-            { id: 48, name: "LAVA", price: 120, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + صوص البافلو + شرائح الهالبينو + بطاطس مقلية" },
-            
-            // 🌭 SANDWICH
-            { id: 49, name: "French Fries", price: 40, category: "sandwiches" },
-            { id: 50, name: "Hot Dog", price: 60, category: "sandwiches" },
-            { id: 51, name: "Grill Chicken", price: 90, category: "sandwiches" },
-            { id: 52, name: "Super Supreme", price: 90, category: "sandwiches" },
-            { id: 53, name: "Pastrmi", price: 70, category: "sandwiches" },
-            { id: 54, name: "Meat Shawarma", price: 90, category: "sandwiches" },
-            
-            // 🧀 MAC & CHEESE
-            { id: 55, name: "Mexican Mac", price: 90, category: "mac-cheese" },
-            { id: 56, name: "Shrimp Mac", price: 90, category: "mac-cheese" },
-            { id: 57, name: "Strips Mac", price: 105, category: "mac-cheese" },
-            { id: 58, name: "Smash Mac", price: 115, category: "mac-cheese" },
-            
-            // 🌯 FAHITA
-            { id: 59, name: "Mexican Fahita", price: 80, category: "fahita" },
-            { id: 60, name: "Strips Fahita", price: 90, category: "fahita" },
-            { id: 61, name: "Grilled Fahita", price: 90, category: "fahita" },
-            
-            // 🍟 LOADED FRIES
-            { id: 62, name: "Mexican Fries", price: 75, category: "loaded-fries" },
-            { id: 63, name: "Smash Fries", price: 90, category: "loaded-fries" },
-            { id: 64, name: "Strips Fries", price: 90, category: "loaded-fries" },
-            
-            // 🔥 TNT
-            { id: 65, name: "Mexican TNT", price: 110, category: "tnt" },
-            { id: 66, name: "Strips TNT", price: 125, category: "tnt" },
-            { id: 67, name: "Smash TNT", price: 130, category: "tnt" },
-            { id: 68, name: "TNT Boom", price: 145, category: "tnt" },
-            
-            // 📦 BOX'S
-            { id: 69, name: "بوكس التوفير", price: 180, category: "boxes", description: "كلاسيك سماش + كلاسيك تشكن + باكيت فرايز + بيج كولا" },
-            { id: 70, name: "بوكس السينجل", price: 140, category: "boxes", description: "كلاسيك سماش + تشيزبرجر + فرايز + بيج كولا" },
-            { id: 71, name: "بوكس الشلة", price: 440, category: "boxes", description: "كلاسيك سماش + مشروم سماش + كلاسيك تشكن + رانجو تشكن + ميكس فرايز + تشيزبرجر + 4 بيج كولا" },
-            
-            // 🍽️ MEALS
-            { id: 72, name: "Strips Meal", price: 140, category: "meals" },
-            { id: 73, name: "Grilled Meal", price: 140, category: "meals" },
-            
-            // 🆕 NEW ITEMS
-            { id: 74, name: "ميني لقمة 1", price: 60, category: "new-items", description: "3 ميني سماش + فرايز" },
-            { id: 75, name: "ميني لقمة 2", price: 115, category: "new-items", description: "3 ميني سماش + تشكن + فرايز" },
-            { id: 76, name: "ميني لقمة 3", price: 205, category: "new-items", description: "3 ميني سماش + تشكن + فرايز" },
-            
-            // 🥗 APPETIZERS
-            { id: 77, name: "Fries", price: 35, category: "appetizers" },
-            { id: 78, name: "Cheesy Fries", price: 45, category: "appetizers" },
-            { id: 79, name: "Chicken Balls", price: 85, category: "appetizers" },
-            { id: 80, name: "Mozzarella Sticks", price: 60, category: "appetizers" },
-            { id: 81, name: "Onion Rings", price: 50, category: "appetizers" },
-            { id: 82, name: "Strips", price: 105, category: "appetizers" },
-            { id: 83, name: "Chicken Caesar", price: 60, category: "appetizers" },
-            { id: 84, name: "Fatusha Salad", price: 50, category: "appetizers" }
-        ];
-
-        // إعدادات Cloudinary
-        const CLOUD_NAME = "dpzllv8mp";
-        const UPLOAD_PRESET = "dpzllv8mp";
-        const FIREBASE_URL = "https://yogurt-172cf-default-rtdb.firebaseio.com/orders.json";
-
-        // المتغيرات
-        let selectedItems = [];
-        let currentCategory = 'all';
-        let currentOrderType = 'takeaway';
-        let currentPaymentMethod = 'etisalat';
-        let currentOrderNumber = '';
-        let currentOrderData = null;
-        let paymentImageUrl = '';
-        let orderCounter = 1;
-
-        // تهيئة الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
-            // جلب آخر رقم طلب من localStorage
-            const savedCounter = localStorage.getItem('orderCounter');
-            if (savedCounter) {
-                orderCounter = parseInt(savedCounter);
-            }
-            
-            setTimeout(() => {
-                document.getElementById('logoAnimation').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('logoAnimation').style.display = 'none';
-                    loadCategories();
-                    loadMenuItems();
-                    updateCart();
-                    selectOrderType('takeaway');
-                    selectPaymentMethod('etisalat');
-                    
-                    const now = new Date();
-                    now.setHours(now.getHours() + 1);
-                    document.getElementById('deliveryTime').value = now.toTimeString().slice(0,5);
-                }, 500);
-            }, 2000);
-        });
-
-        // تحميل الأقسام
-        function loadCategories() {
-            const categoryTabs = document.getElementById('categoryTabs');
-            categoryTabs.innerHTML = menuCategories.map(category => `
-                <button type="button" class="category-btn ${category.id === currentCategory ? 'active' : ''}" onclick="changeCategory('${category.id}')">
-                    <i class="${category.icon}"></i>
-                    ${category.name}
-                </button>
-            `).join('');
-        }
-
-        // تغيير القسم
-        function changeCategory(categoryId) {
-            currentCategory = categoryId;
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.querySelector(`.category-btn[onclick="changeCategory('${categoryId}')"]`).classList.add('active');
-            loadMenuItems();
-        }
-
-        // اختيار نوع الطلب
-        function selectOrderType(type) {
-            currentOrderType = type;
-            
-            document.querySelectorAll('.order-type-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            if (type === 'takeaway') {
-                document.getElementById('takeawayBtn').classList.add('active');
-            } else if (type === 'delivery') {
-                document.getElementById('deliveryBtn').classList.add('active');
-            } else {
-                document.getElementById('hallBtn').classList.add('active');
-            }
-            
-            const addressField = document.getElementById('addressField');
-            if (type === 'delivery') {
-                addressField.style.display = 'block';
-            } else {
-                addressField.style.display = 'none';
-            }
-        }
-
-        // اختيار طريقة الدفع
-        function selectPaymentMethod(method) {
-            currentPaymentMethod = method;
-            
-            document.querySelectorAll('.payment-option-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            if (method === 'etisalat') {
-                document.getElementById('vodafoneBtn').classList.add('active');
-            } else {
-                document.getElementById('instapayBtn').classList.add('active');
-            }
-            
-            document.getElementById('etisalatPayment').style.display = method === 'etisalat' ? 'block' : 'none';
-            document.getElementById('instapayPayment').style.display = method === 'instapay' ? 'block' : 'none';
-        }
-
-        // تحميل العناصر
-        function loadMenuItems() {
-            const menuItemsGrid = document.getElementById('menuItems');
-            let filteredItems = menuItems;
-            
-            if (currentCategory !== 'all') {
-                filteredItems = menuItems.filter(item => item.category === currentCategory);
-            }
-            
-            if (filteredItems.length === 0) {
-                menuItemsGrid.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--gray);">
-                        <i class="fas fa-utensils" style="font-size: 48px; margin-bottom: 20px; display: block;"></i>
-                        <h3>لا توجد أصناف في هذا القسم</h3>
-                    </div>
-                `;
-                return;
-            }
-            
-            menuItemsGrid.innerHTML = filteredItems.map(item => `
-                <div class="menu-item-card">
-                    <div class="item-header">
-                        <h3 class="item-name">${item.name}</h3>
-                        <span class="item-price">${item.price} ج</span>
-                    </div>
-                    ${item.description ? `<p class="item-description">${item.description}</p>` : ''}
-                    <button type="button" class="select-item-btn" onclick="addToCart(${item.id})">
-                        <i class="fas fa-plus"></i>
-                        إضافة للسلة
-                    </button>
-                </div>
-            `).join('');
-        }
-
-        // إضافة للسلة
-        function addToCart(itemId) {
-            const item = menuItems.find(i => i.id === itemId);
-            if (!item) return;
-            
-            const existingItem = selectedItems.find(i => i.id === itemId);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                selectedItems.push({
-                    id: item.id,
-                    name: item.name,
-                    price: item.price,
-                    quantity: 1
-                });
-            }
-            
-            updateCart();
-            showToast(`تم إضافة ${item.name} إلى السلة`);
-        }
-
-        // إزالة من السلة
-        function removeFromCart(itemId) {
-            selectedItems = selectedItems.filter(item => item.id !== itemId);
-            updateCart();
-        }
-
-        // تحديث الكمية
-        function updateQuantity(itemId, change) {
-            const item = selectedItems.find(i => i.id === itemId);
-            if (item) {
-                item.quantity += change;
-                if (item.quantity <= 0) {
-                    removeFromCart(itemId);
-                } else {
-                    updateCart();
-                }
-            }
-        }
-
-        // تحديث السلة
-        function updateCart() {
-            const selectedItemsDiv = document.getElementById('selectedItems');
-            const totalAmountDiv = document.getElementById('totalAmount');
-            const requiredAmountDiv = document.getElementById('requiredAmount');
-            const submitBtn = document.getElementById('submitBtn');
-            
-            const totalAmount = selectedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const requiredAmount = Math.ceil(totalAmount * 0.5);
-            
-            if (selectedItems.length === 0) {
-                selectedItemsDiv.innerHTML = `
-                    <p style="text-align: center; color: var(--gray); padding: 20px;">
-                        لم يتم اختيار أي أصناف بعد
-                    </p>
-                `;
-            } else {
-                selectedItemsDiv.innerHTML = selectedItems.map(item => `
-                    <div class="selected-item">
-                        <div>
-                            <strong>${item.name}</strong>
-                            <div style="font-size: 12px; color: var(--gray); margin-top: 3px;">
-                                ${item.price} ج × ${item.quantity}
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div class="item-quantity-controls">
-                                <button type="button" class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                                <span style="font-weight: bold; min-width: 25px; text-align: center;">${item.quantity}</span>
-                                <button type="button" class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-                            </div>
-                            <span style="font-weight: bold; color: var(--primary); min-width: 60px; text-align: left;">
-                                ${item.price * item.quantity} ج
-                            </span>
-                            <button type="button" class="remove-item-btn" onclick="removeFromCart(${item.id})">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                `).join('');
-            }
-            
-            totalAmountDiv.textContent = `${totalAmount} جنيه`;
-            requiredAmountDiv.textContent = `المطلوب دفعه (50%): ${requiredAmount} جنيه`;
-            submitBtn.disabled = selectedItems.length === 0;
-        }
-
-        // رفع الملف
-        function handleFileUpload(input) {
-            const fileNameDiv = document.getElementById('fileName');
-            
-            if (input.files.length > 0) {
-                const file = input.files[0];
-                
-                if (file.size > 5 * 1024 * 1024) {
-                    showToast('حجم الملف كبير جداً. الحد الأقصى 5MB', 'error');
-                    input.value = '';
-                    return;
-                }
-                
-                fileNameDiv.textContent = `✓ ${file.name}`;
-                fileNameDiv.style.display = 'block';
-            } else {
-                fileNameDiv.style.display = 'none';
-            }
-        }
-
-        // توليد رقم الطلب
-        function generateOrderNumber() {
-            // زيادة العداد أولاً
-            orderCounter++;
-            
-            // حفظ العداد في localStorage
-            localStorage.setItem('orderCounter', orderCounter.toString());
-            
-            // تنسيق الرقم بـ 3 أرقام
-            const paddedNum = orderCounter.toString().padStart(3, '0');
-            return `E-${paddedNum}`;
-        }
-
-        // التحقق من البيانات
-        function validateOrderData() {
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const deliveryTime = document.getElementById('deliveryTime').value;
-            const file = document.getElementById('img').files[0];
-            
-            let address = '';
-            if (currentOrderType === 'delivery') {
-                address = document.getElementById('address').value.trim();
-                if (!address) {
-                    showToast('يرجى إدخال العنوان للتوصيل', 'error');
-                    return false;
-                }
-            }
-            
-            if (!name) {
-                showToast('يرجى إدخال اسم العميل', 'error');
-                return false;
-            }
-            
-            if (!phone || !/^01[0125][0-9]{8}$/.test(phone)) {
-                showToast('يرجى إدخال رقم هاتف صحيح', 'error');
-                return false;
-            }
-            
-            if (selectedItems.length === 0) {
-                showToast('يرجى إضافة أصناف للطلب', 'error');
-                return false;
-            }
-            
-            if (!file) {
-                showToast('يرجى رفع صورة التحويل', 'error');
-                return false;
-            }
-            
-            return true;
-        }
-
-        // فتح واتساب بطريقة تعمل على جميع الأجهزة
-        function openWhatsApp(message) {
-            // رقم واتساب الجديد
-            const whatsappPhone = "201211926740"; // بدون علامة +
-            const encodedMessage = encodeURIComponent(message);
-            
-            // رابط يعمل على جميع الأجهزة
-            const whatsappUrl = `https://wa.me/${whatsappPhone}?text=${encodedMessage}`;
-            
-            // فتح الرابط في نافذة جديدة
-            const newWindow = window.open(whatsappUrl, '_blank');
-            
-            // إصلاح مشكلة حظر النوافذ المنبثقة
-            if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-                // إذا فشل فتح النافذة، نفتحها بطريقة أخرى
-                window.location.href = whatsappUrl;
-            }
-        }
-
-        // حفظ الطلب وإرسال واتساب تلقائياً
-        async function saveOrderAndSendWhatsApp() {
-            if (!validateOrderData()) return;
-            
-            // تأكيد من المستخدم
-            const confirmMessage = `هل تريد تأكيد الطلب وإرساله إلى قاعدة البيانات وواتساب؟`;
-            if (!confirm(confirmMessage)) return;
-            
-            document.getElementById('loadingOverlay').style.display = 'flex';
-            
-            try {
-                // 1. رفع الصورة إلى Cloudinary
-                const file = document.getElementById('img').files[0];
-                const formData = new FormData();
-                formData.append("file", file);
-                formData.append("upload_preset", UPLOAD_PRESET);
-                
-                const imgRes = await fetch(
-                    `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-                    { method: "POST", body: formData }
-                );
-                
-                if (!imgRes.ok) throw new Error('فشل رفع الصورة');
-                
-                const imgData = await imgRes.json();
-                paymentImageUrl = imgData.secure_url;
-                
-                // 2. توليد رقم الطلب
-                currentOrderNumber = generateOrderNumber();
-                
-                // 3. تحضير بيانات الطلب
-                const name = document.getElementById('name').value.trim();
-                const phone = document.getElementById('phone').value.trim();
-                const deliveryTime = document.getElementById('deliveryTime').value;
-                let address = '';
-                if (currentOrderType === 'delivery') {
-                    address = document.getElementById('address').value.trim();
-                }
-                
-                const totalAmount = selectedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                const requiredAmount = Math.ceil(totalAmount * 0.5);
-                
-                const paymentNumber = currentPaymentMethod === 'etisalat' ? '01117268638' : '01211926740';
-                const paymentMethod = currentPaymentMethod === 'etisalat' ? 'اتصالات كاش' : 'انستا باي';
-                const orderTypeText = currentOrderType === 'takeaway' ? 'Take Away' : 
-                                    currentOrderType === 'delivery' ? 'Delivery' : 'صالة';
-                
-                // 4. تحضير نص الرسالة للواتساب
-                const itemsText = selectedItems.map(item => 
-                    `- ${item.name} × ${item.quantity} = ${item.price * item.quantity} ج`
-                ).join('\n');
-                
-                const message = `
-                    🍔 *طلب جديد - مطعم لغوصة*
-                    
-                    📋 *رقم الطلب:* ${currentOrderNumber}
-                    👤 *الاسم:* ${name}
-                    📞 *الهاتف:* ${phone}
-                    📍 *نوع الطلب:* ${orderTypeText}
-                    ${address ? `🏠 *العنوان:* ${address}\n` : ''}
-                    ⏰ *وقت التسليم:* ${deliveryTime}
-                    
-                    🛒 *الطلبات:*
-                    ${itemsText}
-                    
-                    💰 *المبلغ الإجمالي:* ${totalAmount} ج
-                    💵 *المطلوب دفعه (50%):* ${requiredAmount} ج
-                    💳 *طريقة الدفع:* ${paymentMethod}
-                    📱 *رقم الدفع:* ${paymentNumber}
-                    
-                    📸 *صورة التحويل:* ${paymentImageUrl}
-                    ⏳ *الحالة:* جديد
-                    📅 *الوقت:* ${new Date().toLocaleString()}
-                `.trim();
-                
-                // 5. تحضير بيانات الطلب
-                currentOrderData = {
-                    orderNumber: currentOrderNumber,
-                    customerName: name,
-                    customerPhone: phone,
-                    customerAddress: address,
-                    orderType: currentOrderType,
-                    deliveryTime: deliveryTime,
-                    items: selectedItems.map(item => `${item.name} × ${item.quantity}`).join('، '),
-                    itemsDetails: selectedItems,
-                    totalAmount: totalAmount,
-                    requiredAmount: requiredAmount,
-                    paymentMethod: paymentMethod,
-                    paymentNumber: paymentNumber,
-                    paymentImage: paymentImageUrl,
-                    status: "waiting",
-                    time: new Date().toLocaleString(),
-                    timestamp: new Date().toISOString()
-                };
-                
-                // 6. محاولة الحفظ في Firebase (مع معالجة الأخطاء)
-                let firebaseSaved = false;
-                try  catch (firebaseError) {
-                    console.log('Firebase error:', firebaseError);
-                    firebaseSaved = false;
-                }
-                
-                // 7. الحفظ المحلي دائماً (كنسخة احتياطية)
-                try {
-                    // حفظ في localStorage
-                    localStorage.setItem(`order_${currentOrderNumber}`, JSON.stringify(currentOrderData));
-                    
-                    // حفظ في قائمة الطلبات
-                    const allOrders = JSON.parse(localStorage.getItem('all_orders') || '[]');
-                    allOrders.push({
-                        ...currentOrderData,
-                        id: Date.now()
-                    });
-                    localStorage.setItem('all_orders', JSON.stringify(allOrders));
-                    
-                } catch (localError) {
-                    console.log('Local storage error:', localError);
-                }
-                
-                // 8. إخفاء التحميل وإظهار نجاح الحفظ
-                document.getElementById('loadingOverlay').style.display = 'none';
-                
-                if (firebaseSaved) {
-                    showToast(`تم حفظ الطلب ${currentOrderNumber} في قاعدة البيانات`);
-                } else {
-                    showToast(`تم حفظ الطلب ${currentOrderNumber} محلياً`);
-                }
-                
-                // 9. فتح واتساب تلقائياً بعد 1 ثانية
-                setTimeout(() => {
-                    openWhatsApp(message);
-                }, 1000);
-                
-                // 10. عرض رسالة نجاح للعميل
-                setTimeout(() => {
-                    alert(`
-                        ✅ تم إرسال طلبك بنجاح!
-                        --------------------------------------
-                        📋 رقم طلبك: ${currentOrderNumber}
-                        💰 المبلغ المطلوب: ${requiredAmount} جنيه
-                        📞 سيتم التواصل معك على: ${phone}
-                        --------------------------------------
-                        ${firebaseSaved ? '📊 تم حفظ الطلب في قاعدة البيانات' : '📱 تم حفظ الطلب محلياً'}
-                        📱 تم فتح واتساب لإرسال التفاصيل
-                        
-                        إذا لم يفتح واتساب تلقائياً، يمكنك نسخ رقم التليفون وإرسال الرسالة يدوياً:
-                        📱 +201211926740
-                    `);
-                    
-                    // 11. إعادة تعيين النموذج
-                    resetForm();
-                    
-                }, 1500);
-                
-            } catch (error) {
-                document.getElementById('loadingOverlay').style.display = 'none';
-                console.error('Error:', error);
-                showToast('حدث خطأ أثناء حفظ الطلب وإرسال واتساب', 'error');
-                
-                // محاولة فتح واتساب مع رسالة الخطأ
-                setTimeout(() => {
-                    const errorMessage = `
-                        ❌ *خطأ في حفظ الطلب*
-                        
-                        📋 *البيانات التي حاول المستخدم إرسالها:*
-                        👤 الاسم: ${document.getElementById('name').value}
-                        📞 الهاتف: ${document.getElementById('phone').value}
-                        
-                        ⚠️ *تفاصيل الخطأ:* ${error.message}
-                        📅 الوقت: ${new Date().toLocaleString()}
-                    `.trim();
-                    
-                    try {
-                        openWhatsApp(errorMessage);
-                    } catch (e) {
-                        console.error('فشل فتح واتساب:', e);
-                    }
-                }, 1000);
-            }
-        }
-
-        // إعادة تعيين النموذج
-        function resetForm() {
-            selectedItems = [];
-            updateCart();
-            document.getElementById('name').value = '';
-            document.getElementById('phone').value = '';
-            document.getElementById('address').value = '';
-            document.getElementById('img').value = '';
-            document.getElementById('fileName').style.display = 'none';
-            
-            const now = new Date();
-            now.setHours(now.getHours() + 1);
-            document.getElementById('deliveryTime').value = now.toTimeString().slice(0,5);
-            
-            selectOrderType('takeaway');
-            selectPaymentMethod('etisalat');
-            
-            currentOrderData = null;
-            showToast('تم إعادة تعيين النموذج، يمكنك تقديم طلب جديد');
-        }
-
-        // عرض الإشعارات
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.style.background = type === 'error' ? '#DC3545' : 'var(--primary)';
-            toast.style.display = 'block';
-            
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 3000);
-        }
-    </script>
-</body>
-</html>
+<!DOCTYPE html>  <html lang="ar" dir="rtl">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>مطعم لغوصة - طلب أونلاين</title>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">  
+    <style>  
+        :root {  
+            --primary: #4B1E14;  
+            --secondary: #F4E21B;  
+            --light: #FFFDF5;  
+            --dark: #2C1810;  
+            --gray: #6C757D;  
+            --success: #28A745;  
+            --warning: #FFC107;  
+            --danger: #DC3545;  
+            --whatsapp: #25D366;  
+        }  * {  
+        box-sizing: border-box;  
+        margin: 0;  
+        padding: 0;  
+        font-family: 'Cairo', sans-serif;  
+    }  
+
+    body {  
+        background-color: var(--light);  
+        color: var(--dark);  
+        line-height: 1.6;  
+        padding: 20px;  
+        overflow-x: hidden;  
+    }  
+
+    /* Header */  
+    .header {  
+        background: linear-gradient(135deg, var(--primary) 0%, #6B2A1F 100%);  
+        color: white;  
+        padding: 15px 0;  
+        box-shadow: 0 4px 20px rgba(75, 30, 20, 0.3);  
+        border-radius: 10px;  
+        margin-bottom: 20px;  
+    }  
+
+    .header-container {  
+        max-width: 1200px;  
+        margin: 0 auto;  
+        padding: 0 20px;  
+        display: flex;  
+        justify-content: center;  
+        align-items: center;  
+        flex-wrap: wrap;  
+    }  
+
+    .logo-section {  
+        display: flex;  
+        align-items: center;  
+        gap: 15px;  
+    }  
+
+    .logo-img {  
+        width: 70px;  
+        height: 70px;  
+        border-radius: 50%;  
+        border: 3px solid var(--secondary);  
+        object-fit: cover;  
+        box-shadow: 0 0 10px rgba(244, 226, 27, 0.3);  
+        background-color: white;  
+        display: flex;  
+        align-items: center;  
+        justify-content: center;  
+        font-weight: bold;  
+        color: var(--primary);  
+        overflow: hidden;  
+    }  
+
+    .logo-img img {  
+        width: 100%;  
+        height: 100%;  
+        object-fit: cover;  
+    }  
+
+    .logo-text h1 {  
+        font-size: 28px;  
+        margin-bottom: 5px;  
+        color: var(--secondary);  
+        font-weight: 800;  
+    }  
+
+    .logo-text p {  
+        font-size: 14px;  
+        opacity: 0.9;  
+    }  
+
+    /* Main Container */  
+    .main-container {  
+        display: grid;  
+        grid-template-columns: 1fr 1fr;  
+        gap: 20px;  
+        max-width: 1200px;  
+        margin: 0 auto;  
+    }  
+
+    /* Menu Section */  
+    .menu-section {  
+        background: white;  
+        border-radius: 15px;  
+        padding: 25px;  
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);  
+        border: 1px solid #EEE;  
+    }  
+
+    .section-title {  
+        color: var(--primary);  
+        border-right: 5px solid var(--secondary);  
+        padding-right: 15px;  
+        margin-bottom: 25px;  
+        font-size: 24px;  
+        display: flex;  
+        align-items: center;  
+        gap: 10px;  
+    }  
+
+    .section-title i {  
+        color: var(--secondary);  
+    }  
+
+    .menu-items-grid {  
+        display: grid;  
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));  
+        gap: 15px;  
+        margin-bottom: 20px;  
+    }  
+
+    .menu-item-card {  
+        border: 2px solid #F0F0F0;  
+        border-radius: 12px;  
+        padding: 15px;  
+        transition: all 0.3s;  
+        background: white;  
+    }  
+
+    .menu-item-card:hover {  
+        border-color: var(--secondary);  
+        transform: translateY(-3px);  
+        box-shadow: 0 5px 15px rgba(244, 226, 27, 0.1);  
+    }  
+
+    .item-header {  
+        display: flex;  
+        justify-content: space-between;  
+        align-items: flex-start;  
+        margin-bottom: 10px;  
+    }  
+
+    .item-name {  
+        font-size: 16px;  
+        font-weight: 700;  
+        color: var(--primary);  
+    }  
+
+    .item-price {  
+        background: var(--primary);  
+        color: white;  
+        padding: 4px 10px;  
+        border-radius: 20px;  
+        font-weight: bold;  
+        font-size: 14px;  
+    }  
+
+    .item-description {  
+        color: var(--gray);  
+        font-size: 13px;  
+        margin-bottom: 10px;  
+        line-height: 1.4;  
+    }  
+
+    .select-item-btn {  
+        background: var(--primary);  
+        color: white;  
+        border: none;  
+        padding: 8px 15px;  
+        border-radius: 8px;  
+        cursor: pointer;  
+        font-weight: 600;  
+        width: 100%;  
+        transition: all 0.3s;  
+        font-size: 14px;  
+    }  
+
+    .select-item-btn:hover {  
+        background: var(--secondary);  
+        color: var(--primary);  
+    }  
+
+    /* Category Tabs */  
+    .category-tabs {  
+        display: flex;  
+        gap: 10px;  
+        overflow-x: auto;  
+        padding: 10px 0;  
+        flex-wrap: wrap;  
+        margin-bottom: 20px;  
+    }  
+
+    .category-btn {  
+        padding: 10px 15px;  
+        background: #F5F5F5;  
+        border: 2px solid #E0E0E0;  
+        border-radius: 8px;  
+        cursor: pointer;  
+        font-weight: 600;  
+        color: var(--dark);  
+        transition: all 0.3s;  
+        white-space: nowrap;  
+        font-size: 14px;  
+    }  
+
+    .category-btn.active {  
+        background: var(--primary);  
+        color: white;  
+        border-color: var(--primary);  
+    }  
+
+    /* Order Form */  
+    .order-box {  
+        background: white;  
+        border-radius: 15px;  
+        padding: 25px;  
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);  
+        border: 2px solid var(--secondary);  
+        position: sticky;  
+        top: 20px;  
+    }  
+
+    .form-title {  
+        color: var(--primary);  
+        text-align: center;  
+        margin-bottom: 20px;  
+        font-size: 22px;  
+        display: flex;  
+        align-items: center;  
+        justify-content: center;  
+        gap: 10px;  
+    }  
+
+    /* Input Styles */  
+    .form-input {  
+        width: 100%;  
+        padding: 12px 15px;  
+        border: 2px solid #E0E0E0;  
+        border-radius: 8px;  
+        font-size: 16px;  
+        margin-bottom: 15px;  
+        transition: all 0.3s;  
+        background: white;  
+    }  
+
+    .form-input:focus {  
+        border-color: var(--secondary);  
+        outline: none;  
+        box-shadow: 0 0 0 3px rgba(244, 226, 27, 0.2);  
+    }  
+
+    .form-label {  
+        display: block;  
+        margin-bottom: 8px;  
+        font-weight: 600;  
+        color: var(--primary);  
+        display: flex;  
+        align-items: center;  
+        gap: 8px;  
+        font-size: 14px;  
+    }  
+
+    /* Selected Items */  
+    .selected-items-container {  
+        background: #FFF9E6;  
+        border: 2px dashed var(--secondary);  
+        border-radius: 8px;  
+        padding: 15px;  
+        margin-bottom: 20px;  
+        max-height: 250px;  
+        overflow-y: auto;  
+    }  
+
+    .selected-item {  
+        display: flex;  
+        justify-content: space-between;  
+        align-items: center;  
+        padding: 8px 0;  
+        border-bottom: 1px solid #FFE999;  
+        font-size: 14px;  
+    }  
+
+    .selected-item:last-child {  
+        border-bottom: none;  
+    }  
+
+    .item-quantity-controls {  
+        display: flex;  
+        align-items: center;  
+        gap: 8px;  
+    }  
+
+    .quantity-btn {  
+        width: 25px;  
+        height: 25px;  
+        border-radius: 50%;  
+        border: none;  
+        background: var(--primary);  
+        color: white;  
+        cursor: pointer;  
+        font-weight: bold;  
+        font-size: 12px;  
+    }  
+
+    .remove-item-btn {  
+        color: var(--danger);  
+        background: none;  
+        border: none;  
+        cursor: pointer;  
+        font-size: 16px;  
+        margin-right: 5px;  
+    }  
+
+    /* Total Section */  
+    .total-section {  
+        text-align: center;  
+        margin: 20px 0;  
+        padding: 15px;  
+        background: linear-gradient(135deg, #FFF9E6, #FFE999);  
+        border-radius: 10px;  
+        border: 2px solid var(--secondary);  
+    }  
+
+    .total-label {  
+        font-size: 16px;  
+        color: var(--primary);  
+        margin-bottom: 10px;  
+    }  
+
+    .total-amount {  
+        font-size: 28px;  
+        font-weight: bold;  
+        color: var(--primary);  
+    }  
+
+    .required-amount {  
+        font-size: 18px;  
+        color: #DC3545;  
+        margin-top: 10px;  
+        font-weight: bold;  
+    }  
+
+    /* Order Type Selection */  
+    .order-type-section {  
+        background: #F8F9FA;  
+        border-radius: 10px;  
+        padding: 15px;  
+        margin: 15px 0;  
+        border: 2px solid #E0E0E0;  
+    }  
+
+    .order-type-title {  
+        color: var(--primary);  
+        margin-bottom: 10px;  
+        font-size: 16px;  
+        display: flex;  
+        align-items: center;  
+        gap: 10px;  
+    }  
+
+    .order-type-options {  
+        display: flex;  
+        gap: 10px;  
+    }  
+
+    .order-type-btn {  
+        flex: 1;  
+        padding: 12px;  
+        border: 2px solid #E0E0E0;  
+        border-radius: 8px;  
+        background: white;  
+        cursor: pointer;  
+        font-weight: 600;  
+        text-align: center;  
+        transition: all 0.3s;  
+        font-size: 14px;  
+    }  
+
+    .order-type-btn.active {  
+        background: var(--primary);  
+        color: white;  
+        border-color: var(--primary);  
+    }  
+
+    /* Payment Instructions */  
+    .payment-instructions {  
+        background: #F0F8FF;  
+        border: 2px solid #B8D4FF;  
+        border-radius: 10px;  
+        padding: 15px;  
+        margin: 15px 0;  
+    }  
+
+    .instructions-title {  
+        color: var(--primary);  
+        margin-bottom: 10px;  
+        display: flex;  
+        align-items: center;  
+        gap: 10px;  
+        font-size: 16px;  
+    }  
+
+    .vodafone-number {  
+        background: white;  
+        padding: 12px;  
+        border-radius: 8px;  
+        text-align: center;  
+        font-size: 20px;  
+        font-weight: bold;  
+        color: var(--primary);  
+        border: 2px solid #4CAF50;  
+        margin: 10px 0;  
+    }  
+
+    .instapay-number {  
+        background: white;  
+        padding: 12px;  
+        border-radius: 8px;  
+        text-align: center;  
+        font-size: 18px;  
+        font-weight: bold;  
+        color: var(--primary);  
+        border: 2px solid #E1306C;  
+        margin: 8px 0;  
+    }  
+
+    /* File Upload */  
+    .file-upload-container {  
+        margin: 15px 0;  
+    }  
+
+    .file-upload-label {  
+        display: block;  
+        margin-bottom: 8px;  
+        font-weight: 600;  
+        color: var(--primary);  
+        display: flex;  
+        align-items: center;  
+        gap: 10px;  
+        font-size: 14px;  
+    }  
+
+    .custom-file-upload {  
+        display: flex;  
+        align-items: center;  
+        gap: 10px;  
+        padding: 12px;  
+        background: white;  
+        border: 2px dashed var(--secondary);  
+        border-radius: 10px;  
+        cursor: pointer;  
+        transition: all 0.3s;  
+    }  
+
+    .custom-file-upload:hover {  
+        background: #FFF9E6;  
+        border-color: var(--primary);  
+    }  
+
+    .upload-icon {  
+        font-size: 20px;  
+        color: var(--primary);  
+    }  
+
+    .upload-text h4 {  
+        color: var(--primary);  
+        margin-bottom: 3px;  
+        font-size: 14px;  
+    }  
+
+    .upload-text p {  
+        color: var(--gray);  
+        font-size: 12px;  
+    }  
+
+    .file-name {  
+        font-size: 12px;  
+        color: var(--success);  
+        font-weight: bold;  
+        margin-top: 8px;  
+        display: none;  
+    }  
+
+    /* Submit Button */  
+    .submit-btn {  
+        background: linear-gradient(135deg, var(--primary) 0%, #6B2A1F 100%);  
+        color: white;  
+        border: none;  
+        padding: 18px;  
+        font-size: 20px;  
+        font-weight: bold;  
+        border-radius: 12px;  
+        width: 100%;  
+        cursor: pointer;  
+        transition: all 0.3s;  
+        display: flex;  
+        justify-content: center;  
+        align-items: center;  
+        gap: 12px;  
+        margin-top: 20px;  
+        box-shadow: 0 8px 25px rgba(75, 30, 20, 0.2);  
+    }  
+
+    .submit-btn:hover:not(:disabled) {  
+        background: linear-gradient(135deg, #6B2A1F 0%, var(--primary) 100%);  
+        transform: translateY(-5px);  
+        box-shadow: 0 15px 30px rgba(75, 30, 20, 0.3);  
+    }  
+
+    .submit-btn:active:not(:disabled) {  
+        transform: translateY(-2px);  
+    }  
+
+    .submit-btn:disabled {  
+        opacity: 0.6;  
+        cursor: not-allowed;  
+        transform: none;  
+        box-shadow: none;  
+    }  
+
+    /* Payment Options */  
+    .payment-options {  
+        display: flex;  
+        gap: 10px;  
+        margin-bottom: 10px;  
+    }  
+
+    .payment-option-btn {  
+        flex: 1;  
+        padding: 10px;  
+        border: 2px solid #E0E0E0;  
+        border-radius: 8px;  
+        background: white;  
+        cursor: pointer;  
+        font-weight: 600;  
+        text-align: center;  
+        transition: all 0.3s;  
+        font-size: 13px;  
+    }  
+
+    .payment-option-btn.active {  
+        background: var(--primary);  
+        color: white;  
+        border-color: var(--primary);  
+    }  
+
+    /* Responsive */  
+    @media (max-width: 992px) {  
+        .main-container {  
+            grid-template-columns: 1fr;  
+        }  
+        .order-box {  
+            position: static;  
+        }  
+    }  
+
+    @media (max-width: 768px) {  
+        .header-container {  
+            flex-direction: column;  
+            gap: 15px;  
+            text-align: center;  
+        }  
+        .menu-items-grid {  
+            grid-template-columns: 1fr;  
+        }  
+        .order-type-options, .payment-options {  
+            flex-direction: column;  
+        }  
+        .submit-btn {  
+            padding: 15px;  
+            font-size: 18px;  
+        }  
+    }  
+
+    /* Logo Animation */  
+    .logo-animation {  
+        position: fixed;  
+        top: 0;  
+        left: 0;  
+        width: 100%;  
+        height: 100%;  
+        background: linear-gradient(135deg, var(--primary) 0%, #6B2A1F 100%);  
+        display: flex;  
+        flex-direction: column;  
+        justify-content: center;  
+        align-items: center;  
+        z-index: 9999;  
+        transition: opacity 0.5s ease;  
+    }  
+
+    .rotating-logo {  
+        width: 150px;  
+        height: 150px;  
+        border-radius: 50%;  
+        border: 5px solid var(--secondary);  
+        box-shadow: 0 0 30px rgba(244, 226, 27, 0.5);  
+        background: white;  
+        display: flex;  
+        justify-content: center;  
+        align-items: center;  
+        overflow: hidden;  
+        position: relative;  
+        animation: scaleAndRotate 2.5s ease-in-out;  
+    }  
+
+    .rotating-logo img {  
+        width: 90%;  
+        height: 90%;  
+        object-fit: contain;  
+    }  
+
+    .rotating-logo::after {  
+        content: '';  
+        position: absolute;  
+        top: -5px;  
+        left: -5px;  
+        right: -5px;  
+        bottom: -5px;  
+        border: 5px solid transparent;  
+        border-top-color: var(--secondary);  
+        border-radius: 50%;  
+        animation: spin 1s linear infinite;  
+    }  
+
+    @keyframes scaleAndRotate {  
+        0% {  
+            transform: scale(0.3) rotate(0deg);  
+            opacity: 0;  
+        }  
+        30% {  
+            transform: scale(1.2) rotate(180deg);  
+            opacity: 1;  
+        }  
+        60% {  
+            transform: scale(1) rotate(360deg);  
+            opacity: 1;  
+        }  
+        100% {  
+            transform: scale(1) rotate(360deg);  
+            opacity: 1;  
+        }  
+    }  
+
+    @keyframes spin {  
+        0% { transform: rotate(0deg); }  
+        100% { transform: rotate(360deg); }  
+    }  
+
+    /* Toast Notification */  
+    .toast {  
+        position: fixed;  
+        top: 20px;  
+        left: 50%;  
+        transform: translateX(-50%);  
+        background: var(--primary);  
+        color: white;  
+        padding: 15px 30px;  
+        border-radius: 10px;  
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);  
+        display: none;  
+        z-index: 3000;  
+        animation: slideDown 0.3s ease;  
+        border: 2px solid var(--secondary);  
+    }  
+
+    @keyframes slideDown {  
+        from { top: -100px; opacity: 0; }  
+        to { top: 20px; opacity: 1; }  
+    }  
+
+    /* Loading Overlay */  
+    .loading-overlay {  
+        display: none;  
+        position: fixed;  
+        top: 0;  
+        left: 0;  
+        width: 100%;  
+        height: 100%;  
+        background: rgba(0,0,0,0.8);  
+        z-index: 4000;  
+        align-items: center;  
+        justify-content: center;  
+    }  
+
+    .loading-content {  
+        background: white;  
+        padding: 30px;  
+        border-radius: 15px;  
+        text-align: center;  
+        border: 3px solid var(--secondary);  
+    }  
+
+    .loading-spinner {  
+        font-size: 35px;  
+        color: var(--primary);  
+        margin-bottom: 15px;  
+        animation: spin 1s linear infinite;  
+    }  
+</style>
+
+</head>  
+<body>  
+    <!-- Logo Animation -->  
+    <div class="logo-animation" id="logoAnimation">  
+        <div class="rotating-logo">  
+            <img src="logo.jpg" alt="مطعم لغوصة" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size: 32px; font-weight: bold; color: var(--primary);\'>لغوصة</span>';">  
+        </div>  
+    </div>  <!-- Header -->  
+<header class="header">  
+    <div class="header-container">  
+        <div class="logo-section">  
+            <div class="logo-img">  
+                <img src="logo.jpg" alt="مطعم لغوصة" onerror="this.style.display='none'; this.parentElement.innerHTML='لغوصة'; this.parentElement.style.fontSize='22px';">  
+            </div>  
+            <div class="logo-text">  
+                <h1>مطعم لغوصة</h1>  
+                <p>برجر - ساندويتشات - وجبات سريعة</p>  
+            </div>  
+        </div>  
+    </div>  
+</header>  
+
+<!-- Main Container -->  
+<div class="main-container">  
+    <!-- Menu Section -->  
+    <div class="menu-section">  
+        <h2 class="section-title">  
+            <i class="fas fa-utensils"></i>  
+            قائمة الطعام  
+        </h2>  
+          
+        <!-- Category Tabs -->  
+        <div class="category-tabs" id="categoryTabs">  
+            <!-- سيتم ملؤه بالجافاسكريبت -->  
+        </div>  
+
+        <!-- Menu Items -->  
+        <div class="menu-items-grid" id="menuItems">  
+            <!-- سيتم ملؤه بالجافاسكريبت -->  
+        </div>  
+    </div>  
+
+    <!-- Order Form -->  
+    <div class="order-box">  
+        <h2 class="form-title">  
+            <i class="fas fa-shopping-cart"></i>  
+            طلبك  
+        </h2>  
+
+        <!-- Selected Items -->  
+        <div class="selected-items-container" id="selectedItems">  
+            <p style="text-align: center; color: var(--gray); padding: 20px;">  
+                لم يتم اختيار أي أصناف بعد  
+            </p>  
+        </div>  
+
+        <!-- Total Amount -->  
+        <div class="total-section">  
+            <div class="total-label">المبلغ الإجمالي</div>  
+            <div class="total-amount" id="totalAmount">0 جنيه</div>  
+            <div class="required-amount" id="requiredAmount">  
+                المطلوب دفعه (50%): 0 جنيه  
+            </div>  
+        </div>  
+
+        <!-- Customer Info -->  
+        <div class="form-group">  
+            <label class="form-label">  
+                <i class="fas fa-user"></i>  
+                اسم العميل  
+            </label>  
+            <input type="text" class="form-input" id="name" placeholder="اسم العميل" required>  
+        </div>  
+
+        <div class="form-group">  
+            <label class="form-label">  
+                <i class="fas fa-phone"></i>  
+                رقم الهاتف  
+            </label>  
+            <input type="tel" class="form-input" id="phone" placeholder="رقم الهاتف" required>  
+        </div>  
+
+        <!-- Order Type -->  
+        <div class="order-type-section">  
+            <h3 class="order-type-title">  
+                <i class="fas fa-shipping-fast"></i>  
+                نوع الطلب  
+            </h3>  
+            <div class="order-type-options">  
+                <button type="button" class="order-type-btn active" id="takeawayBtn" onclick="selectOrderType('takeaway')">  
+                    <i class="fas fa-box"></i>  
+                    Take Away  
+                </button>  
+                <button type="button" class="order-type-btn" id="deliveryBtn" onclick="selectOrderType('delivery')">  
+                    <i class="fas fa-truck"></i>  
+                    Delivery  
+                </button>  
+                <button type="button" class="order-type-btn" id="hallBtn" onclick="selectOrderType('hall')">  
+                    <i class="fas fa-store"></i>  
+                    صالة  
+                </button>  
+            </div>  
+        </div>  
+
+        <!-- Address Field -->  
+        <div class="form-group" id="addressField" style="display: none;">  
+            <label class="form-label">  
+                <i class="fas fa-map-marker-alt"></i>  
+                العنوان  
+            </label>  
+            <textarea class="form-input" id="address" rows="2" placeholder="العنوان"></textarea>  
+        </div>  
+
+        <!-- Payment Instructions -->  
+        <div class="payment-instructions">  
+            <h3 class="instructions-title">  
+                <i class="fas fa-money-check-alt"></i>  
+                تعليمات الدفع  
+            </h3>  
+            <p style="margin-bottom: 10px; color: #666; font-size: 14px;">  
+                <strong>يرجى تحويل 50% من المبلغ الإجمالي على أحد الأرقام:</strong>  
+            </p>  
+              
+            <div class="payment-options">  
+                <button type="button" class="payment-option-btn active" id="vodafoneBtn" onclick="selectPaymentMethod('etisalat')">  
+                    اتصالات كاش  
+                </button>  
+                <button type="button" class="payment-option-btn" id="instapayBtn" onclick="selectPaymentMethod('instapay')">  
+                    انستا باي  
+                </button>  
+            </div>  
+
+            <div id="etisalatPayment" class="payment-method">  
+                <p style="color: #666; margin-bottom: 8px; font-size: 13px;">اتصالات كاش:</p>  
+                <div class="vodafone-number">01117268638</div>  
+            </div>  
+
+            <div id="instapayPayment" class="payment-method" style="display: none;">  
+                <p style="color: #666; margin-bottom: 8px; font-size: 13px;">انستا باي:</p>  
+                <div class="instapay-number">01211926740</div>  
+            </div>  
+
+            <p style="color: #666; font-size: 13px; margin-top: 10px;">  
+                ثم قم برفع صورة التحويل  
+            </p>  
+        </div>  
+
+        <!-- Payment Screenshot -->  
+        <div class="file-upload-container">  
+            <label class="file-upload-label">  
+                <i class="fas fa-camera"></i>  
+                صورة التحويل  
+            </label>  
+            <div class="custom-file-upload" onclick="document.getElementById('img').click()">  
+                <div class="upload-icon">  
+                    <i class="fas fa-cloud-upload-alt"></i>  
+                </div>  
+                <div class="upload-text">  
+                    <h4>انقر لرفع صورة التحويل</h4>  
+                    <p>JPEG, PNG - الحد الأقصى 5MB</p>  
+                </div>  
+                <div>  
+                    <i class="fas fa-file-upload" style="color: var(--primary); font-size: 18px;"></i>  
+                </div>  
+            </div>  
+            <input type="file" id="img" accept="image/*" style="display: none;" onchange="handleFileUpload(this)">  
+              
+            <div class="file-name" id="fileName"></div>  
+        </div>  
+
+        <!-- Delivery Time -->  
+        <div class="form-group">  
+            <label class="form-label">  
+                <i class="fas fa-clock"></i>  
+                وقت التسليم  
+            </label>  
+            <input type="time" class="form-input" id="deliveryTime" required>  
+        </div>  
+
+        <!-- Submit Button -->  
+        <button type="button" class="submit-btn" id="submitBtn" onclick="saveOrderAndSendWhatsApp()">  
+            <i class="fas fa-paper-plane"></i>  
+            تأكيد وإرسال الطلب  
+        </button>  
+    </div>  
+</div>  
+
+<!-- Loading Overlay -->  
+<div class="loading-overlay" id="loadingOverlay">  
+    <div class="loading-content">  
+        <div class="loading-spinner">  
+            <i class="fas fa-spinner"></i>  
+        </div>  
+        <h3 style="color: var(--primary); margin-bottom: 10px;">جاري إرسال الطلب</h3>  
+        <p style="color: var(--gray);">يرجى الانتظار...</p>  
+    </div>  
+</div>  
+
+<!-- Toast Notification -->  
+<div class="toast" id="toast"></div>  
+
+<script>  
+    // بيانات المنيو المحدثة بناءً على الطلب  
+    const menuCategories = [  
+        { id: 'all', name: 'الكل', icon: 'fas fa-utensils' },  
+        { id: 'spicy-mix', name: '🥪 ميكس حادق', icon: 'fas fa-pepper-hot' },  
+        { id: 'spicy-additions', name: '🥪 إضافات حادق', icon: 'fas fa-plus-circle' },  
+        { id: 'sweet-mix', name: '🍪 ميكس الحلو', icon: 'fas fa-candy-cane' },  
+        { id: 'sweet-additions', name: '🍯 إضافات الحلو', icon: 'fas fa-plus-circle' },  
+        { id: 'vej', name: '🥜 فيج', icon: 'fas fa-seedling' },  
+        { id: 'lagousa-plus', name: '🍫 لغوصة بلس', icon: 'fas fa-star' },  
+        { id: 'additions', name: '➕ إضافات', icon: 'fas fa-plus' },  
+        { id: 'chicken', name: '🍗 CHICKEN', icon: 'fas fa-drumstick-bite' },  
+        { id: 'burgers', name: '🍔 BURGERS', icon: 'fas fa-hamburger' },  
+        { id: 'sandwiches', name: '🌭 SANDWICH', icon: 'fas fa-bread-slice' },  
+        { id: 'mac-cheese', name: '🧀 MAC & CHEESE', icon: 'fas fa-cheese' },  
+        { id: 'fahita', name: '🌯 FAHITA', icon: 'fas fa-burrito' },  
+        { id: 'loaded-fries', name: '🍟 LOADED FRIES', icon: 'fas fa-french-fries' },  
+        { id: 'tnt', name: '🔥 TNT', icon: 'fas fa-fire' },  
+        { id: 'boxes', name: '📦 BOX\'S', icon: 'fas fa-box-open' },  
+        { id: 'meals', name: '🍽️ MEALS', icon: 'fas fa-utensil-spoon' },  
+        { id: 'new-items', name: '🆕 NEW ITEMS', icon: 'fas fa-fire' },  
+        { id: 'appetizers', name: '🥗 APPETIZERS', icon: 'fas fa-salad' }  
+    ];  
+
+    const menuItems = [  
+        // 🥪 ميكس حادق  
+        { id: 1, name: "كريمة تركي", price: 20, category: "spicy-mix" },  
+        { id: 2, name: "ميكس حادق", price: 30, category: "spicy-mix" },  
+        { id: 3, name: "بطاطس", price: 20, category: "spicy-mix" },  
+        { id: 4, name: "بطاطس موزاريلا", price: 30, category: "spicy-mix" },  
+        { id: 5, name: "جبنة مقلية", price: 25, category: "spicy-mix" },  
+        { id: 6, name: "فاهيتا فراخ", price: 30, category: "spicy-mix" },  
+        { id: 7, name: "لحمة بصل", price: 35, category: "spicy-mix" },  
+        { id: 8, name: "سدق خلطة", price: 30, category: "spicy-mix" },  
+        { id: 9, name: "ميكسيكي", price: 25, category: "spicy-mix" },  
+          
+        // 🥪 إضافات حادق  
+        { id: 10, name: "كيري بسطرمة", price: 15, category: "spicy-additions" },  
+        { id: 11, name: "كيري سويسيس", price: 20, category: "spicy-additions" },  
+        { id: 12, name: "ميكس شيدر", price: 15, category: "spicy-additions" },  
+        { id: 13, name: "مشكل جبن", price: 15, category: "spicy-additions" },  
+        { id: 14, name: "فاهيتا لانشون", price: 15, category: "spicy-additions" },  
+        { id: 15, name: "لانشون تركي", price: 20, category: "spicy-additions" },  
+        { id: 16, name: "تركي سوسيس", price: 25, category: "spicy-additions" },  
+        { id: 17, name: "بسطرمة تركي", price: 25, category: "spicy-additions" },  
+        { id: 18, name: "تونة", price: 25, category: "spicy-additions" },  
+          
+        // 🍪 ميكس الحلو  
+        { id: 19, name: "كيندر", price: 25, category: "sweet-mix" },  
+        { id: 20, name: "كيندر ميكس", price: 30, category: "sweet-mix" },  
+        { id: 21, name: "بيستاشيو", price: 30, category: "sweet-mix" },  
+        { id: 22, name: "بيستاشيو ميكس", price: 35, category: "sweet-mix" },  
+        { id: 23, name: "مورو لوتس شوكولاتة", price: 25, category: "sweet-mix" },  
+        { id: 24, name: "مورو أوريو شوكولاتة", price: 25, category: "sweet-mix" },  
+          
+        // 🍯 إضافات الحلو  
+        { id: 25, name: "كريمة مربى", price: 15, category: "sweet-additions" },
+        { id: 25, name: "كريمة عسل", price: 15, category: "sweet-additions" },
+        { id: 26, name: "كريمة شوكولاتة", price: 15, category: "sweet-additions" },  
+        { id: 27, name: "كريمة أوريو شوكولاتة", price: 25, category: "sweet-additions" },  
+        { id: 28, name: "لوتس أو مورو", price: 20, category: "sweet-additions" },  
+        { id: 29, name: "كريمة حلاوة شوكولاتة", price: 25, category: "sweet-additions" },  
+        { id: 30, name: "لوتس أوريو شوكولاتة", price: 25, category: "sweet-additions" },  
+          
+        // 🥜 فيج  
+        { id: 31, name: "فيج", price: 35, category: "vej" },  
+          
+        // 🍫 لغوصة بلس  
+        { id: 32, name: "لغوصة بلس", price: 40, category: "lagousa-plus" },  
+        { id: 33, name: "لغوصة دابل بلس", price: 45, category: "lagousa-plus" },  
+          
+        // ➕ إضافات  
+        { id: 34, name: "إضافة سوداني", price: 5, category: "additions" },  
+          
+        // 🍗 CHICKEN  
+        { id: 35, name: "GLACCIO", price: 100, category: "chicken", description: "صدور الدجاج المقلية مع صوص الشيدر الكريمي والمايونيز والبطاطس المقلية" },  
+        { id: 36, name: "BUFFALO CHICKEN", price: 110, category: "chicken", description: "صدور الدجاج المقلية مع صوص المايونيز وصوص البافلو وحلقات الهالبينو والبطاطس المقلية" },  
+        { id: 37, name: "CHEESY CHICKEN", price: 125, category: "chicken", description: "صدور الدجاج المقلية مع صوص الشيدر الكريمي والمايونيز والموزاريلا ستيكس والموزاريلا السايحة والبطاطس المقلية" },  
+        { id: 38, name: "RINGO CHICKEN", price: 120, category: "chicken", description: "صدور الدجاج المقلية مع صوص الشيدر الكريمي والمايونيز وصوص الباربكيو وحلقات البصل والبطاطس المقلية" },  
+        { id: 39, name: "RANCHO CHICKEN", price: 130, category: "chicken", description: "صدور الدجاج المقلية مع صوص الشيدر الكريمي وصوص الرانش وشرائح التركي المدخن والبطاطس المقلية" },  
+        { id: 40, name: "TASTY CHICKEN", price: 145, category: "chicken", description: "صدور الدجاج المقلية مع صوص الشيدر الكريمي وصوص التيستي وشرائح البسطرمة والبطاطس المقلية" },  
+          
+        // 🍔 BURGERS - لغوصة  
+        { id: 41, name: "GLACCIO", price: 110, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + بطاطس مقلية" },  
+        { id: 42, name: "CARAMELIZED", price: 115, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + البصل المكرمل + بطاطس مقلية" },  
+        { id: 43, name: "NINJA", price: 125, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + صوص باربكيو + حلقات بصل + بطاطس مقلية" },  
+        { id: 44, name: "DOUBLE CHEESY", price: 130, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + موزاريلا ستيكس + موزاريلا سايحة + بطاطس مقلية" },  
+        { id: 45, name: "COW BOY", price: 125, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + صوص باربكيو + شرائح الهوت دوج + بطاطس مقلية" },  
+        { id: 46, name: "MUSHROOM", price: 140, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + الصوص المميز + شرائح المشروم + بطاطس مقلية" },  
+        { id: 47, name: "TASTY LOVERS", price: 140, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + صوص التيستي الخطر + بيف بيكون + بطاطس مقلية" },  
+        { id: 48, name: "LAVA", price: 120, category: "burgers", description: "لحم بقري + صوص + جبنة + صوص الشيدر الكريمي خس + طماطم + بصل + صوص البافلو + شرائح الهالبينو + بطاطس مقلية" },  
+          
+        // 🌭 SANDWICH  
+        { id: 49, name: "French Fries", price: 40, category: "sandwiches" },  
+        { id: 50, name: "Hot Dog", price: 60, category: "sandwiches" },  
+        { id: 51, name: "Grill Chicken", price: 90, category: "sandwiches" },  
+        { id: 52, name: "Super Supreme", price: 90, category: "sandwiches" },  
+        { id: 53, name: "Pastrmi", price: 70, category: "sandwiches" },  
+        { id: 54, name: "Met Shawarma", price: 90, category: "sandwiches" },  
+          
+        // 🧀 MAC & CHEESE  
+        { id: 55, name: "Mexican Mac", price: 90, category: "mac-cheese" },  
+        { id: 56, name: "Shrimp Mac", price: 90, category: "mac-cheese" },  
+        { id: 57, name: "Strips Mac", price: 105, category: "mac-cheese" },  
+        { id: 58, name: "Smash Mac", price: 110, category: "mac-cheese" },  
+          
+        // 🌯 FAHITA  
+        { id: 59, name: "Mexican Fahita", price: 80, category: "fahita" },  
+        { id: 60, name: "Strips Fahita", price: 90, category: "fahita" },  
+        { id: 61, name: "Grilled Fahita", price: 90, category: "fahita" },  
+          
+        // 🍟 LOADED FRIES  
+        { id: 62, name: "Mexican Fries", price: 75, category: "loaded-fries" },  
+        { id: 63, name: "Smash Fries", price: 95, category: "loaded-fries" },  
+        { id: 64, name: "Strips Fries", price: 90, category: "loaded-fries" },  
+          
+        // 🔥 TNT  
+        { id: 65, name: "Mexican TNT", price: 110, category: "tnt" },  
+        { id: 66, name: "Strips TNT", price: 125, category: "tnt" },  
+        { id: 67, name: "Smash TNT", price: 130, category: "tnt" },  
+        { id: 68, name: "TNT Boom", price: 145, category: "tnt" },  
+          
+        // 📦 BOX'S  
+        { id: 69, name: "بوكس التوفير", price: 180, category: "boxes", description: "كلاسيك سماش + كلاسيك تشكن + باكيت فرايز + بيج كولا" },  
+        { id: 70, name: "بوكس السينجل", price: 130, category: "boxes", description: "كلاسيك سماش + تشيزبرجر + فرايز + بيج كولا" },  
+        { id: 71, name: "بوكس الشلة", price: 440, category: "boxes", description: "كلاسيك سماش + مشروم سماش + كلاسيك تشكن + رانجو تشكن + ميكس فرايز + تشيزبرجر + 4 بيج كولا" },  
+          
+        // 🍽️ MEALS  
+        { id: 72, name: "Strips Meal", price: 140, category: "meals" },  
+        { id: 73, name: "Grilled Meal", price: 140, category: "meals" },  
+          
+        // 🆕 NEW ITEMS  
+        { id: 74, name: "ميني لقمة 1", price: 60, category: "new-items", description: "3 ميني سماش + فرايز" },  
+        { id: 75, name: "ميني لقمة 2", price: 115, category: "new-items", description: "3 ميني سماش + تشكن + فرايز" },  
+        { id: 76, name: "ميني لقمة 3", price: 205, category: "new-items", description: "3 ميني سماش + تشكن + فرايز" },  
+          
+        // 🥗 APPETIZERS  
+        { id: 77, name: "Fries", price: 35, category: "appetizers" },  
+        { id: 78, name: "Cheesy Fries", price: 45, category: "appetizers" },  
+        { id: 79, name: "Chicken Balls", price: 85, category: "appetizers" },  
+        { id: 80, name: "Mozzarella Sticks", price: 60, category: "appetizers" },  
+        { id: 81, name: "Onion Rings", price: 55, category: "appetizers" },  
+        { id: 82, name: "Strips", price: 105, category: "appetizers" },  
+        { id: 83, name: "Chicken Caesar", price: 60, category: "appetizers" },  
+        { id: 84, name: "Fatusha Salad", price: 55, category: "appetizers" }  
+    ];  
+
+    // إعدادات Cloudinary  
+    const CLOUD_NAME = "dpzllv8mp";  
+    const UPLOAD_PRESET = "dpzllv8mp";  
+    const FIREBASE_URL = "https://yogurt-172cf-default-rtdb.firebaseio.com/orders.json";  
+
+    // المتغيرات  
+    let selectedItems = [];  
+    let currentCategory = 'all';  
+    let currentOrderType = 'takeaway';  
+    let currentPaymentMethod = 'etisalat';  
+    let currentOrderNumber = '';  
+    let currentOrderData = null;  
+    let paymentImageUrl = '';  
+    let orderCounter = 1;  
+
+    // تهيئة الصفحة  
+    document.addEventListener('DOMContentLoaded', function() {  
+        // جلب آخر رقم طلب من localStorage  
+        const savedCounter = localStorage.getItem('orderCounter');  
+        if (savedCounter) {  
+            orderCounter = parseInt(savedCounter);  
+        }  
+          
+        setTimeout(() => {  
+            document.getElementById('logoAnimation').style.opacity = '0';  
+            setTimeout(() => {  
+                document.getElementById('logoAnimation').style.display = 'none';  
+                loadCategories();  
+                loadMenuItems();  
+                updateCart();  
+                selectOrderType('takeaway');  
+                selectPaymentMethod('etisalat');  
+                  
+                const now = new Date();  
+                now.setHours(now.getHours() + 1);  
+                document.getElementById('deliveryTime').value = now.toTimeString().slice(0,5);  
+            }, 500);  
+        }, 2000);  
+    });  
+
+    // تحميل الأقسام  
+    function loadCategories() {  
+        const categoryTabs = document.getElementById('categoryTabs');  
+        categoryTabs.innerHTML = menuCategories.map(category => `  
+            <button type="button" class="category-btn ${category.id === currentCategory ? 'active' : ''}" onclick="changeCategory('${category.id}')">  
+                <i class="${category.icon}"></i>  
+                ${category.name}  
+            </button>  
+        `).join('');  
+    }  
+
+    // تغيير القسم  
+    function changeCategory(categoryId) {  
+        currentCategory = categoryId;  
+        document.querySelectorAll('.category-btn').forEach(btn => {  
+            btn.classList.remove('active');  
+        });  
+        document.querySelector(`.category-btn[onclick="changeCategory('${categoryId}')"]`).classList.add('active');  
+        loadMenuItems();  
+    }  
+
+    // اختيار نوع الطلب  
+    function selectOrderType(type) {  
+        currentOrderType = type;  
+          
+        document.querySelectorAll('.order-type-btn').forEach(btn => {  
+            btn.classList.remove('active');  
+        });  
+          
+        if (type === 'takeaway') {  
+            document.getElementById('takeawayBtn').classList.add('active');  
+        } else if (type === 'delivery') {  
+            document.getElementById('deliveryBtn').classList.add('active');  
+        } else {  
+            document.getElementById('hallBtn').classList.add('active');  
+        }  
+          
+        const addressField = document.getElementById('addressField');  
+        if (type === 'delivery') {  
+            addressField.style.display = 'block';  
+        } else {  
+            addressField.style.display = 'none';  
+        }  
+    }  
+
+    // اختيار طريقة الدفع  
+    function selectPaymentMethod(method) {  
+        currentPaymentMethod = method;  
+          
+        document.querySelectorAll('.payment-option-btn').forEach(btn => {  
+            btn.classList.remove('active');  
+        });  
+          
+        if (method === 'etisalat') {  
+            document.getElementById('vodafoneBtn').classList.add('active');  
+        } else {  
+            document.getElementById('instapayBtn').classList.add('active');  
+        }  
+          
+        document.getElementById('etisalatPayment').style.display = method === 'etisalat' ? 'block' : 'none';  
+        document.getElementById('instapayPayment').style.display = method === 'instapay' ? 'block' : 'none';  
+    }  
+
+    // تحميل العناصر  
+    function loadMenuItems() {  
+        const menuItemsGrid = document.getElementById('menuItems');  
+        let filteredItems = menuItems;  
+          
+        if (currentCategory !== 'all') {  
+            filteredItems = menuItems.filter(item => item.category === currentCategory);  
+        }  
+          
+        if (filteredItems.length === 0) {  
+            menuItemsGrid.innerHTML = `  
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--gray);">  
+                    <i class="fas fa-utensils" style="font-size: 48px; margin-bottom: 20px; display: block;"></i>  
+                    <h3>لا توجد أصناف في هذا القسم</h3>  
+                </div>  
+            `;  
+            return;  
+        }  
+          
+        menuItemsGrid.innerHTML = filteredItems.map(item => `  
+            <div class="menu-item-card">  
+                <div class="item-header">  
+                    <h3 class="item-name">${item.name}</h3>  
+                    <span class="item-price">${item.price} ج</span>  
+                </div>  
+                ${item.description ? `<p class="item-description">${item.description}</p>` : ''}  
+                <button type="button" class="select-item-btn" onclick="addToCart(${item.id})">  
+                    <i class="fas fa-plus"></i>  
+                    إضافة للسلة  
+                </button>  
+            </div>  
+        `).join('');  
+    }  
+
+    // إضافة للسلة  
+    function addToCart(itemId) {  
+        const item = menuItems.find(i => i.id === itemId);  
+        if (!item) return;  
+          
+        const existingItem = selectedItems.find(i => i.id === itemId);  
+        if (existingItem) {  
+            existingItem.quantity += 1;  
+        } else {  
+            selectedItems.push({  
+                id: item.id,  
+                name: item.name,  
+                price: item.price,  
+                quantity: 1  
+            });  
+        }  
+          
+        updateCart();  
+        showToast(`تم إضافة ${item.name} إلى السلة`);  
+    }  
+
+    // إزالة من السلة  
+    function removeFromCart(itemId) {  
+        selectedItems = selectedItems.filter(item => item.id !== itemId);  
+        updateCart();  
+    }  
+
+    // تحديث الكمية  
+    function updateQuantity(itemId, change) {  
+        const item = selectedItems.find(i => i.id === itemId);  
+        if (item) {  
+            item.quantity += change;  
+            if (item.quantity <= 0) {  
+                removeFromCart(itemId);  
+            } else {  
+                updateCart();  
+            }  
+        }  
+    }  
+
+    // تحديث السلة  
+    function updateCart() {  
+        const selectedItemsDiv = document.getElementById('selectedItems');  
+        const totalAmountDiv = document.getElementById('totalAmount');  
+        const requiredAmountDiv = document.getElementById('requiredAmount');  
+        const submitBtn = document.getElementById('submitBtn');  
+          
+        const totalAmount = selectedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);  
+        const requiredAmount = Math.ceil(totalAmount * 0.5);  
+          
+        if (selectedItems.length === 0) {  
+            selectedItemsDiv.innerHTML = `  
+                <p style="text-align: center; color: var(--gray); padding: 20px;">  
+                    لم يتم اختيار أي أصناف بعد  
+                </p>  
+            `;  
+        } else {  
+            selectedItemsDiv.innerHTML = selectedItems.map(item => `  
+                <div class="selected-item">  
+                    <div>  
+                        <strong>${item.name}</strong>  
+                        <div style="font-size: 12px; color: var(--gray); margin-top: 3px;">  
+                            ${item.price} ج × ${item.quantity}  
+                        </div>  
+                    </div>  
+                    <div style="display: flex; align-items: center; gap: 10px;">  
+                        <div class="item-quantity-controls">  
+                            <button type="button" class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>  
+                            <span style="font-weight: bold; min-width: 25px; text-align: center;">${item.quantity}</span>  
+                            <button type="button" class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>  
+                        </div>  
+                        <span style="font-weight: bold; color: var(--primary); min-width: 60px; text-align: left;">  
+                            ${item.price * item.quantity} ج  
+                        </span>  
+                        <button type="button" class="remove-item-btn" onclick="removeFromCart(${item.id})">  
+                            <i class="fas fa-trash"></i>  
+                        </button>  
+                    </div>  
+                </div>  
+            `).join('');  
+        }  
+          
+        totalAmountDiv.textContent = `${totalAmount} جنيه`;  
+        requiredAmountDiv.textContent = `المطلوب دفعه (50%): ${requiredAmount} جنيه`;  
+        submitBtn.disabled = selectedItems.length === 0;  
+    }  
+
+    // رفع الملف  
+    function handleFileUpload(input) {  
+        const fileNameDiv = document.getElementById('fileName');  
+          
+        if (input.files.length > 0) {  
+            const file = input.files[0];  
+              
+            if (file.size > 5 * 1024 * 1024) {  
+                showToast('حجم الملف كبير جداً. الحد الأقصى 5MB', 'error');  
+                input.value = '';  
+                return;  
+            }  
+              
+            fileNameDiv.textContent = `✓ ${file.name}`;  
+            fileNameDiv.style.display = 'block';  
+        } else {  
+            fileNameDiv.style.display = 'none';  
+        }  
+    }  
+
+    // توليد رقم الطلب  
+    function generateOrderNumber() {  
+        // زيادة العداد أولاً  
+        orderCounter++;  
+          
+        // حفظ العداد في localStorage  
+        localStorage.setItem('orderCounter', orderCounter.toString());  
+          
+        // تنسيق الرقم بـ 3 أرقام  
+        const paddedNum = orderCounter.toString().padStart(3, '0');  
+        return `E-${paddedNum}`;  
+    }  
+
+    // التحقق من البيانات  
+    function validateOrderData() {  
+        const name = document.getElementById('name').value.trim();  
+        const phone = document.getElementById('phone').value.trim();  
+        const deliveryTime = document.getElementById('deliveryTime').value;  
+        const file = document.getElementById('img').files[0];  
+          
+        let address = '';  
+        if (currentOrderType === 'delivery') {  
+            address = document.getElementById('address').value.trim();  
+            if (!address) {  
+                showToast('يرجى إدخال العنوان للتوصيل', 'error');  
+                return false;  
+            }  
+        }  
+          
+        if (!name) {  
+            showToast('يرجى إدخال اسم العميل', 'error');  
+            return false;  
+        }  
+          
+        if (!phone || !/^01[0125][0-9]{8}$/.test(phone)) {  
+            showToast('يرجى إدخال رقم هاتف صحيح', 'error');  
+            return false;  
+        }  
+          
+        if (selectedItems.length === 0) {  
+            showToast('يرجى إضافة أصناف للطلب', 'error');  
+            return false;  
+        }  
+          
+        if (!file) {  
+            showToast('يرجى رفع صورة التحويل', 'error');  
+            return false;  
+        }  
+          
+        return true;  
+    }  
+
+    // فتح واتساب بطريقة تعمل على جميع الأجهزة  
+    function openWhatsApp(message) {  
+        // رقم واتساب الجديد  
+        const whatsappPhone = "201211926740"; // بدون علامة +  
+        const encodedMessage = encodeURIComponent(message);  
+          
+        // رابط يعمل على جميع الأجهزة  
+        const whatsappUrl = `https://wa.me/${whatsappPhone}?text=${encodedMessage}`;  
+          
+        // فتح الرابط في نافذة جديدة  
+        const newWindow = window.open(whatsappUrl, '_blank');  
+          
+        // إصلاح مشكلة حظر النوافذ المنبثقة  
+        if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {  
+            // إذا فشل فتح النافذة، نفتحها بطريقة أخرى  
+            window.location.href = whatsappUrl;  
+        }  
+    }  
+
+    // حفظ الطلب وإرسال واتساب تلقائياً  
+    async function saveOrderAndSendWhatsApp() {  
+        if (!validateOrderData()) return;  
+          
+        // تأكيد من المستخدم  
+        const confirmMessage = `هل تريد تأكيد الطلب وإرساله إلى قاعدة البيانات وواتساب؟`;  
+        if (!confirm(confirmMessage)) return;  
+          
+        document.getElementById('loadingOverlay').style.display = 'flex';  
+          
+        try {  
+            // 1. رفع الصورة إلى Cloudinary  
+            const file = document.getElementById('img').files[0];  
+            const formData = new FormData();  
+            formData.append("file", file);  
+            formData.append("upload_preset", UPLOAD_PRESET);  
+              
+            const imgRes = await fetch(  
+                `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,  
+                { method: "POST", body: formData }  
+            );  
+              
+            if (!imgRes.ok) throw new Error('فشل رفع الصورة');  
+              
+            const imgData = await imgRes.json();  
+            paymentImageUrl = imgData.secure_url;  
+              
+            // 2. توليد رقم الطلب  
+            currentOrderNumber = generateOrderNumber();  
+              
+            // 3. تحضير بيانات الطلب  
+            const name = document.getElementById('name').value.trim();  
+            const phone = document.getElementById('phone').value.trim();  
+            const deliveryTime = document.getElementById('deliveryTime').value;  
+            let address = '';  
+            if (currentOrderType === 'delivery') {  
+                address = document.getElementById('address').value.trim();  
+            }  
+              
+            const totalAmount = selectedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);  
+            const requiredAmount = Math.ceil(totalAmount * 0.5);  
+              
+            const paymentNumber = currentPaymentMethod === 'etisalat' ? '01117268638' : '01211926740';  
+            const paymentMethod = currentPaymentMethod === 'etisalat' ? 'اتصالات كاش' : 'انستا باي';  
+            const orderTypeText = currentOrderType === 'takeaway' ? 'Take Away' :   
+                                currentOrderType === 'delivery' ? 'Delivery' : 'صالة';  
+              
+            // 4. تحضير نص الرسالة للواتساب  
+            const itemsText = selectedItems.map(item =>   
+                `- ${item.name} × ${item.quantity} = ${item.price * item.quantity} ج`  
+            ).join('\n');  
+              
+            const message = `  
+                🍔 *طلب جديد - مطعم لغوصة*  
+                  
+                📋 *رقم الطلب:* ${currentOrderNumber}  
+                👤 *الاسم:* ${name}  
+                📞 *الهاتف:* ${phone}  
+                📍 *نوع الطلب:* ${orderTypeText}  
+                ${address ? `🏠 *العنوان:* ${address}\n` : ''}  
+                ⏰ *وقت التسليم:* ${deliveryTime}  
+                  
+                🛒 *الطلبات:*  
+                ${itemsText}  
+                  
+                💰 *المبلغ الإجمالي:* ${totalAmount} ج  
+                💵 *المطلوب دفعه (50%):* ${requiredAmount} ج  
+                💳 *طريقة الدفع:* ${paymentMethod}  
+                📱 *رقم الدفع:* ${paymentNumber}  
+                  
+                📸 *صورة التحويل:* ${paymentImageUrl}  
+                ⏳ *الحالة:* جديد  
+                📅 *الوقت:* ${new Date().toLocaleString()}  
+            `.trim();  
+              
+            // 5. تحضير بيانات الطلب  
+            currentOrderData = {  
+                orderNumber: currentOrderNumber,  
+                customerName: name,  
+                customerPhone: phone,  
+                customerAddress: address,  
+                orderType: currentOrderType,  
+                deliveryTime: deliveryTime,  
+                items: selectedItems.map(item => `${item.name} × ${item.quantity}`).join('، '),  
+                itemsDetails: selectedItems,  
+                totalAmount: totalAmount,  
+                requiredAmount: requiredAmount,  
+                paymentMethod: paymentMethod,  
+                paymentNumber: paymentNumber,  
+                paymentImage: paymentImageUrl,  
+                status: "waiting",  
+                time: new Date().toLocaleString(),  
+                timestamp: new Date().toISOString()  
+            };  
+              
+// 6. محاولة الحفظ في Firebase (مع معالجة الأخطاء)
+let firebaseSaved = false;
+try {
+    const response = await fetch(FIREBASE_URL, {
+        method: "POST",
+        body: JSON.stringify(currentOrderData)
+    });
+    firebaseSaved = response.ok;
+} catch (firebaseError) {
+    console.log('Firebase error:', firebaseError);
+    firebaseSaved = false;
+}
+              
+            // 7. الحفظ المحلي دائماً (كنسخة احتياطية)  
+            try {  
+                // حفظ في localStorage  
+                localStorage.setItem(`order_${currentOrderNumber}`, JSON.stringify(currentOrderData));  
+                  
+                // حفظ في قائمة الطلبات  
+                const allOrders = JSON.parse(localStorage.getItem('all_orders') || '[]');  
+                allOrders.push({  
+                    ...currentOrderData,  
+                    id: Date.now()  
+                });  
+                localStorage.setItem('all_orders', JSON.stringify(allOrders));  
+                  
+            } catch (localError) {  
+                console.log('Local storage error:', localError);  
+            }  
+              
+            // 8. إخفاء التحميل وإظهار نجاح الحفظ  
+            document.getElementById('loadingOverlay').style.display = 'none';  
+              
+            if (firebaseSaved) {  
+                showToast(`تم حفظ الطلب ${currentOrderNumber} في قاعدة البيانات`);  
+            } else {  
+                showToast(`تم حفظ الطلب ${currentOrderNumber} محلياً`);  
+            }  
+              
+            // 9. فتح واتساب تلقائياً بعد 1 ثانية  
+            setTimeout(() => {  
+                openWhatsApp(message);  
+            }, 1000);  
+              
+            // 10. عرض رسالة نجاح للعميل  
+            setTimeout(() => {  
+                alert(`  
+                    ✅ تم إرسال طلبك بنجاح!  
+                    --------------------------------------  
+                    📋 رقم طلبك: ${currentOrderNumber}  
+                    💰 المبلغ المطلوب: ${requiredAmount} جنيه  
+                    📞 سيتم التواصل معك على: ${phone}  
+                    --------------------------------------  
+                    ${firebaseSaved ? '📊 تم حفظ الطلب في قاعدة البيانات' : '📱 تم حفظ الطلب محلياً'}  
+                    📱 تم فتح واتساب لإرسال التفاصيل  
+                      
+                    إذا لم يفتح واتساب تلقائياً، يمكنك نسخ رقم التليفون وإرسال الرسالة يدوياً:  
+                    📱 +201211926740  
+                `);  
+                  
+                // 11. إعادة تعيين النموذج  
+                resetForm();  
+                  
+            }, 1500);  
+              
+        } catch (error) {  
+            document.getElementById('loadingOverlay').style.display = 'none';  
+            console.error('Error:', error);  
+            showToast('حدث خطأ أثناء حفظ الطلب وإرسال واتساب', 'error');  
+              
+            // محاولة فتح واتساب مع رسالة الخطأ  
+            setTimeout(() => {  
+                const errorMessage = `  
+                    ❌ *خطأ في حفظ الطلب*  
+                      
+                    📋 *البيانات التي حاول المستخدم إرسالها:*  
+                    👤 الاسم: ${document.getElementById('name').value}  
+                    📞 الهاتف: ${document.getElementById('phone').value}  
+                      
+                    ⚠️ *تفاصيل الخطأ:* ${error.message}  
+                    📅 الوقت: ${new Date().toLocaleString()}  
+                `.trim();  
+                  
+                try {  
+                    openWhatsApp(errorMessage);  
+                } catch (e) {  
+                    console.error('فشل فتح واتساب:', e);  
+                }  
+            }, 1000);  
+        }  
+    }  
+
+    // إعادة تعيين النموذج  
+    function resetForm() {  
+        selectedItems = [];  
+        updateCart();  
+        document.getElementById('name').value = '';  
+        document.getElementById('phone').value = '';  
+        document.getElementById('address').value = '';  
+        document.getElementById('img').value = '';  
+        document.getElementById('fileName').style.display = 'none';  
+          
+        const now = new Date();  
+        now.setHours(now.getHours() + 1);  
+        document.getElementById('deliveryTime').value = now.toTimeString().slice(0,5);  
+          
+        selectOrderType('takeaway');  
+        selectPaymentMethod('etisalat');  
+          
+        currentOrderData = null;  
+        showToast('تم إعادة تعيين النموذج، يمكنك تقديم طلب جديد');  
+    }  
+
+    // عرض الإشعارات  
+    function showToast(message, type = 'success') {  
+        const toast = document.getElementById('toast');  
+        toast.textContent = message;  
+        toast.style.background = type === 'error' ? '#DC3545' : 'var(--primary)';  
+        toast.style.display = 'block';  
+          
+        setTimeout(() => {  
+            toast.style.display = 'none';  
+        }, 3000);  
+    }  
+</script>
+
+</body>  
+</html>  
