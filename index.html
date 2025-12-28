@@ -1473,15 +1473,7 @@
                 
                 // 6. محاولة الحفظ في Firebase (مع معالجة الأخطاء)
                 let firebaseSaved = false;
-                try {
-                    const response = await fetch(FIREBASE_URL, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(currentOrderData)
-                    });
-                    
-                    firebaseSaved = response.ok;
-                } catch (firebaseError) {
+                try  catch (firebaseError) {
                     console.log('Firebase error:', firebaseError);
                     firebaseSaved = false;
                 }
