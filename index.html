@@ -959,7 +959,7 @@
         { id: 18, name: "تونة", price: 25, category: "spicy-additions" },  
           
         // 🍪 ميكس الحلو  
-        { id: 19, name: "كيندر", price: 125, category: "sweet-mix" },  
+        { id: 19, name: "كيندر", price: 25, category: "sweet-mix" },  
         { id: 20, name: "كيندر ميكس", price: 30, category: "sweet-mix" },  
         { id: 21, name: "بيستاشيو", price: 30, category: "sweet-mix" },  
         { id: 22, name: "بيستاشيو ميكس", price: 35, category: "sweet-mix" },  
@@ -1279,7 +1279,7 @@
         }  
           
         totalAmountDiv.textContent = `${totalAmount} جنيه`;  
-        requiredAmountDiv.textContent = `المطلوب دفعه (50%): ${requiredAmount} جنيه`;  
+        requiredAmountDiv.textContent = `المطلوب دفعه (50%) الان والباقي عند الاستلام: ${requiredAmount} جنيه`;  
         submitBtn.disabled = selectedItems.length === 0;  
     }  
 
@@ -1434,7 +1434,7 @@
                 📞 *الهاتف:* ${phone}  
                 📍 *نوع الطلب:* ${orderTypeText}  
                 ${address ? `🏠 *العنوان:* ${address}\n` : ''}  
-                ⏰ *وقت التسليم:* ${deliveryTime}  
+                ⏰ *وقت الاستلام:* ${deliveryTime}  
                   
                 🛒 *الطلبات:*  
                 ${itemsText}  
